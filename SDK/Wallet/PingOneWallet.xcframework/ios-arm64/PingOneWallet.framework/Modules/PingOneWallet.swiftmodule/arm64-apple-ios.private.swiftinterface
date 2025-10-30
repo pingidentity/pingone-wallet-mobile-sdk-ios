@@ -118,14 +118,12 @@ public enum CredentialAction : Swift.String, Swift.Codable {
 }
 @_hasMissingDesignatedInitializers public class WalletEncryptedStorageManager : PingOneWallet.StorageManagerContract {
   public static func initialize(errorHandler: (any PingOneWallet.StorageErrorHandler)?) -> DIDSDK.CompletionHandler<any PingOneWallet.StorageManagerContract>
-  public static func deleteEncryptedKey()
   public func setStorageErrorHandler(_ storageErrorHandler: any PingOneWallet.StorageErrorHandler)
   public func getStorageErrorHandler() -> (any PingOneWallet.StorageErrorHandler)?
   @available(*, deprecated, message: "This method should only be used when migrating from V1 SDK. The application instance returned here will be deleted from storage after this call so you must re-save the application instance.")
   public func getApplicationInstance() -> DIDSDK.ApplicationInstance?
   public func saveApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion, applicationInstance: DIDSDK.ApplicationInstance)
   public func getApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion) -> DIDSDK.ApplicationInstance?
-  public func deleteApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion)
   public func saveClaim(_ claim: DIDSDK.Claim)
   public func getClaim(claimId: Swift.String) -> DIDSDK.Claim?
   public func saveClaimReference(_ claimReference: DIDSDK.ClaimReference)
@@ -154,7 +152,6 @@ public class DataRepository {
   public func getStorageErrorHandler() -> (any PingOneWallet.StorageErrorHandler)?
   public func saveApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion, applicationInstance: DIDSDK.ApplicationInstance)
   public func getApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion) -> DIDSDK.ApplicationInstance?
-  public func deleteApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion)
   public func saveString(_ str: Swift.String, for key: Swift.String)
   public func getString(for key: Swift.String) -> Swift.String?
   public func saveStringSet(_ set: [Swift.String], for key: Swift.String)
@@ -182,7 +179,6 @@ public protocol StorageManagerContract {
   func getApplicationInstance() -> DIDSDK.ApplicationInstance?
   func saveApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion, applicationInstance: DIDSDK.ApplicationInstance)
   func getApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion) -> DIDSDK.ApplicationInstance?
-  func deleteApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion)
   func saveClaim(_ claim: DIDSDK.Claim)
   func getClaim(claimId: Swift.String) -> DIDSDK.Claim?
   func saveClaimReference(_ claimReference: DIDSDK.ClaimReference)
@@ -224,7 +220,6 @@ public struct StorageKeys {
   public func updatePushTokens(_ pushToken: Foundation.Data, isSandbox: Swift.Bool = false) -> [DIDSDK.ApplicationInstance]
   @discardableResult
   public func updatePushNotificationToken(_ pushToken: Foundation.Data, isSandbox: Swift.Bool = false) -> DIDSDK.CompletionHandler<Swift.Bool>
-  public static func reset()
   @discardableResult
   public func disablePush() -> DIDSDK.CompletionHandler<Swift.Bool>
   @available(*, deprecated, renamed: "processPingOneRequest", message: "This method is deprecated and will be removed in upcoming updates. Use processPingOneRequest instead")
