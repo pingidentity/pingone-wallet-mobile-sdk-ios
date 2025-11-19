@@ -9609,6 +9609,13 @@
       },
       {
         "kind": "Import",
+        "name": "LocalAuthentication",
+        "printedName": "LocalAuthentication",
+        "declKind": "Import",
+        "moduleName": "CryptoTools"
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -13542,14 +13549,14 @@
     {
       "filePath": "\/Users\/kdevipriya\/dev\/TestNew\/pingone-wallet-ios\/PingOneWallet\/CryptoTools\/EncryptedKeyManager\/EncryptedKeyManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 4964,
+      "offset": 5280,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/kdevipriya\/dev\/TestNew\/pingone-wallet-ios\/PingOneWallet\/CryptoTools\/EncryptedKeyManager\/EncryptedKeyManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 6184,
+      "offset": 6500,
       "length": 4,
       "value": "true"
     },
