@@ -2649,6 +2649,28 @@
           },
           {
             "kind": "Function",
+            "name": "deleteEncryptedKey",
+            "printedName": "deleteEncryptedKey()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13PingOneWallet0C23EncryptedStorageManagerC06deleteD3KeyyyFZ",
+            "mangledName": "$s13PingOneWallet0C23EncryptedStorageManagerC06deleteD3KeyyyFZ",
+            "moduleName": "PingOneWallet",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "setStorageErrorHandler",
             "printedName": "setStorageErrorHandler(_:)",
             "children": [
@@ -2797,6 +2819,33 @@
             "declKind": "Func",
             "usr": "s:13PingOneWallet0C23EncryptedStorageManagerC22getApplicationInstance9forRegion6DIDSDK0hI0CSgAA0abK0V_tF",
             "mangledName": "$s13PingOneWallet0C23EncryptedStorageManagerC22getApplicationInstance9forRegion6DIDSDK0hI0CSgAA0abK0V_tF",
+            "moduleName": "PingOneWallet",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deleteApplicationInstance",
+            "printedName": "deleteApplicationInstance(forRegion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PingOneRegion",
+                "printedName": "PingOneWallet.PingOneRegion",
+                "usr": "s:13PingOneWallet0aB6RegionV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13PingOneWallet0C23EncryptedStorageManagerC25deleteApplicationInstance9forRegionyAA0abK0V_tF",
+            "mangledName": "$s13PingOneWallet0C23EncryptedStorageManagerC25deleteApplicationInstance9forRegionyAA0abK0V_tF",
             "moduleName": "PingOneWallet",
             "declAttributes": [
               "AccessControl",
@@ -3699,6 +3748,32 @@
             "declKind": "Func",
             "usr": "s:13PingOneWallet14DataRepositoryC22getApplicationInstance9forRegion6DIDSDK0gH0CSgAA0abJ0V_tF",
             "mangledName": "$s13PingOneWallet14DataRepositoryC22getApplicationInstance9forRegion6DIDSDK0gH0CSgAA0abJ0V_tF",
+            "moduleName": "PingOneWallet",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deleteApplicationInstance",
+            "printedName": "deleteApplicationInstance(forRegion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PingOneRegion",
+                "printedName": "PingOneWallet.PingOneRegion",
+                "usr": "s:13PingOneWallet0aB6RegionV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13PingOneWallet14DataRepositoryC25deleteApplicationInstance9forRegionyAA0abJ0V_tF",
+            "mangledName": "$s13PingOneWallet14DataRepositoryC25deleteApplicationInstance9forRegionyAA0abJ0V_tF",
             "moduleName": "PingOneWallet",
             "declAttributes": [
               "AccessControl"
@@ -4669,6 +4744,36 @@
             "declKind": "Func",
             "usr": "s:13PingOneWallet22StorageManagerContractP22getApplicationInstance9forRegion6DIDSDK0hI0CSgAA0abK0V_tF",
             "mangledName": "$s13PingOneWallet22StorageManagerContractP22getApplicationInstance9forRegion6DIDSDK0hI0CSgAA0abK0V_tF",
+            "moduleName": "PingOneWallet",
+            "genericSig": "<τ_0_0 where τ_0_0 : PingOneWallet.StorageManagerContract>",
+            "sugared_genericSig": "<Self where Self : PingOneWallet.StorageManagerContract>",
+            "protocolReq": true,
+            "declAttributes": [
+              "RawDocComment"
+            ],
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "deleteApplicationInstance",
+            "printedName": "deleteApplicationInstance(forRegion:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PingOneRegion",
+                "printedName": "PingOneWallet.PingOneRegion",
+                "usr": "s:13PingOneWallet0aB6RegionV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13PingOneWallet22StorageManagerContractP25deleteApplicationInstance9forRegionyAA0abK0V_tF",
+            "mangledName": "$s13PingOneWallet22StorageManagerContractP25deleteApplicationInstance9forRegionyAA0abK0V_tF",
             "moduleName": "PingOneWallet",
             "genericSig": "<τ_0_0 where τ_0_0 : PingOneWallet.StorageManagerContract>",
             "sugared_genericSig": "<Self where Self : PingOneWallet.StorageManagerContract>",
@@ -6090,6 +6195,29 @@
           },
           {
             "kind": "Function",
+            "name": "reset",
+            "printedName": "reset()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:13PingOneWallet0abC6ClientC5resetyyFZ",
+            "mangledName": "$s13PingOneWallet0abC6ClientC5resetyyFZ",
+            "moduleName": "PingOneWallet",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "disablePush",
             "printedName": "disablePush()",
             "children": [
@@ -6114,7 +6242,8 @@
             "moduleName": "PingOneWallet",
             "declAttributes": [
               "AccessControl",
-              "DiscardableResult"
+              "DiscardableResult",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           },
