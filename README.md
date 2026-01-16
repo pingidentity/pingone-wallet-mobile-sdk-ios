@@ -35,14 +35,8 @@ The PingOne Wallet SDK for iOS relies on XCFramework components. You'll need to 
 
     b. Drag and drop all the xcframework dependencies to the section _Frameworks, Libraries, and Embedded Content_ in Xcode.
     
-            * PingOneVerify.xcframework
+            * PingOneWallet.xcframework
     
-            * BlinkID.xcframework
-    
-            * VoiceSdk.xcframework
-    
-            * NeoInterfaces.xcframework
-
 3. Add SVGKit via Swift Package Manager
 
     a. In Xcode go to `File` -> `Add Packages...` 
