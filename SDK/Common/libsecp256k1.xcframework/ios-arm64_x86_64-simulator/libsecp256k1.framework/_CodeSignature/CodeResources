@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/libsecp256k1-Swift.h</key>
 		<data>
-		On/ikoeABbzuQ/aLt6TZJMEuwWQ=
+		NtK8d6pBip6TNPRHmy8za7fZW9Q=
 		</data>
 		<key>Headers/libsecp256k1.h</key>
 		<data>
@@ -14,47 +14,47 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		LHCV4zMzQ+i6e96JKPVuY8f3/7s=
+		0l1afw1iyuVtwt30o3fKTCyMrOA=
 		</data>
 		<key>Modules/libsecp256k1.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		iBMIEJLWTngc8cpw3rURK5j7NGg=
+		p6jP3y0b3RlKT24sMv6mveILIis=
 		</data>
 		<key>Modules/libsecp256k1.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		f4+SrABWOjBIDuLdPWP116aMm6A=
+		CMgI8lEstFoMXpLKG2DiA33NDno=
 		</data>
 		<key>Modules/libsecp256k1.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		B2n4vwfB0JcPFk2Dusd0biMA/QA=
+		SYZxgLTLfpsfK55lWazkSrv9/7A=
 		</data>
 		<key>Modules/libsecp256k1.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		f4+SrABWOjBIDuLdPWP116aMm6A=
+		CMgI8lEstFoMXpLKG2DiA33NDno=
 		</data>
 		<key>Modules/libsecp256k1.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		7gJm2VE4GD3k4m9IRQoIxKxEWWI=
+		bzG4qYnYmV2ew1+IpZEv64Fvnqk=
 		</data>
 		<key>Modules/libsecp256k1.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		iBMIEJLWTngc8cpw3rURK5j7NGg=
+		p6jP3y0b3RlKT24sMv6mveILIis=
 		</data>
 		<key>Modules/libsecp256k1.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		v02aPDA6gOgos767k49vYl1F5mU=
+		O6W3O96hQDVBhBC37qXQ+lQ7jiQ=
 		</data>
 		<key>Modules/libsecp256k1.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		wYC9grRbe0/ofrOaLHx+EYd+f7c=
+		Z08vWEP0oJmEWD67amTesVCEsZg=
 		</data>
 		<key>Modules/libsecp256k1.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		v02aPDA6gOgos767k49vYl1F5mU=
+		O6W3O96hQDVBhBC37qXQ+lQ7jiQ=
 		</data>
 		<key>Modules/libsecp256k1.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		HTZOUpb7WCBCPY6Id/yTggH4/1U=
+		FVooWtDwfh+/X/yJu6In67yGhho=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -67,7 +67,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			XV/Hr1ENSAWe87ZD4oPn14qt+K8ni9DagjiKu7wyik0=
+			sj9YEZyzknFkUJX6dZGBhcHax7N8Y+aIB5FbV+ptxYc=
 			</data>
 		</dict>
 		<key>Headers/libsecp256k1.h</key>
@@ -81,70 +81,70 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			3dLRie3JCVtXANT6chMglg/KLQLC2v+ZpWxyhpV59vk=
+			50XIZD80Fk4A0j1yeeLn8712LAEmsdvi9UrPKsApy84=
 			</data>
 		</dict>
 		<key>Modules/libsecp256k1.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6Zz5ePJlIl3JiHM5HXDgkvrUEHaSYm0ekGtZZc82TP0=
+			9uYRlYKQH3dSd9Pbh9MwQVtsLADywqUPxvUcmNYcGnA=
 			</data>
 		</dict>
 		<key>Modules/libsecp256k1.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			q3cuDhE/0UlYAepbd0x+irBhApdRctXDywgHA8152hg=
+			kGZAZfNsqMbE9Qge6R2Xz+HA7z8DBlQJyn9O8Tq9xXw=
 			</data>
 		</dict>
 		<key>Modules/libsecp256k1.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6Zz5ePJlIl3JiHM5HXDgkvrUEHaSYm0ekGtZZc82TP0=
+			9uYRlYKQH3dSd9Pbh9MwQVtsLADywqUPxvUcmNYcGnA=
 			</data>
 		</dict>
 		<key>Modules/libsecp256k1.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VKfQ/QSSyFTC23KKubcOVedYnIKrDgOcE9T0z1FS/us=
+			Jvef7T7maY0zCVM0hCU2ngPwANdg/Rrv7Wn1nzGb6+Q=
 			</data>
 		</dict>
 		<key>Modules/libsecp256k1.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3dLRie3JCVtXANT6chMglg/KLQLC2v+ZpWxyhpV59vk=
+			50XIZD80Fk4A0j1yeeLn8712LAEmsdvi9UrPKsApy84=
 			</data>
 		</dict>
 		<key>Modules/libsecp256k1.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ABFuWl4NP8yfuoeBv8QaBVcgSZ+FurWHr1arq/XazHI=
+			lf41fHueJJUti/EVo1Sdh9onYCSIaRUVS0FyAUcl4qU=
 			</data>
 		</dict>
 		<key>Modules/libsecp256k1.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			b0+spveKNdTxGJO2woKUITOFIKq0y4wa7YmzWLiydG0=
+			/WzkcpmMs2XoybKYREUl90Bzp583Ysu6en/RX+MyoXk=
 			</data>
 		</dict>
 		<key>Modules/libsecp256k1.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ABFuWl4NP8yfuoeBv8QaBVcgSZ+FurWHr1arq/XazHI=
+			lf41fHueJJUti/EVo1Sdh9onYCSIaRUVS0FyAUcl4qU=
 			</data>
 		</dict>
 		<key>Modules/libsecp256k1.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2MAoY/ysNMhX/kPksF7qlikLS+kfWeAFMMEEeGSNSs8=
+			NIL8+4yVyi1CAowfK5qnJk/Dfj5Z1rHYp0CUjjqqbbs=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
