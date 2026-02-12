@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name JoseTools
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.2.1 effective-5.10 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name JoseTools
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.1
 import CryptoTools
 import Foundation
 import JOSESwift
@@ -16,13 +16,19 @@ public struct JsonWebKey {
   public let use: JoseTools.JWKUse
   public let keyId: Swift.String
   public let pairingKey: (any CryptoTools.Key)?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(key: any CryptoTools.Key, jwkUse: JoseTools.JWKUse, keyId: Swift.String, pairingKey: (any CryptoTools.Key)? = nil) throws
+  #endif
   public init(secKey: Security.SecKey, keyClass: CryptoTools.KeyClass, keyType: CryptoTools.KeyType, jwkUse: JoseTools.JWKUse, keyId: Swift.String) throws
   public init(jwkData: Foundation.Data, keyType: CryptoTools.KeyType) throws
   public init(jwk: any JOSESwift.JWK) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   public func encode() -> Foundation.Data?
+  #endif
   public func encode() throws -> [Swift.String : Swift.String]
+  #if compiler(>=5.3) && $NonescapableTypes
   public func encode() -> Swift.String?
+  #endif
   public static func getPubSecKey(from jwk: any JOSESwift.JWK) throws -> Security.SecKey
   public func getKeyId() -> Swift.String
 }
@@ -34,8 +40,12 @@ public struct JOSEHelper {
     public func setJWSAlgorithm(_ jwsAlgorithm: Swift.String) -> JoseTools.JOSEHelper.Builder
     public func setJWEKeyManagementAlgorithm(_ jweKeyManagementAlgorithm: Swift.String) -> JoseTools.JOSEHelper.Builder
     public func setJWEContentEncryptionAlgorithm(_ jweContentEncryptionAlgorithm: Swift.String) -> JoseTools.JOSEHelper.Builder
+    #if compiler(>=5.3) && $NonescapableTypes
     public func setSenderJwkSet(_ publicJwkSet: JoseTools.JsonWebKeySet, signingKeyId: Swift.String?) -> JoseTools.JOSEHelper.Builder
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     public func setRecipientJwkSet(_ publicJwkSet: JoseTools.JsonWebKeySet, encryptionKeyId: Swift.String?) -> JoseTools.JOSEHelper.Builder
+    #endif
     public func create() throws -> JoseTools.JOSEHelper
     @objc deinit
   }
@@ -45,10 +55,12 @@ public struct JOSEHelper {
 public class URLRequestBody {
   public init(body: [Swift.String : Any])
   convenience public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   public subscript(bodyField: Swift.String) -> Any? {
     get
     set(newValue)
   }
+  #endif
   @discardableResult
   public func setBodyParam(_ bodyField: Swift.String, bodyValue: any Swift.Decodable & Swift.Encodable) -> JoseTools.URLRequestBody
   public func getParams() -> [Swift.String : Any]
@@ -76,10 +88,12 @@ public class URLRequestHeader {
   public static let header_content_type_text_plain: Swift.String
   public init(headers: [Swift.String : Swift.String])
   convenience public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   public subscript(headerField: Swift.String) -> Swift.String? {
     get
     set(newValue)
   }
+  #endif
   @discardableResult
   public func setHeaderField(_ headerField: Swift.String, headerValue: Swift.String) -> JoseTools.URLRequestHeader
   public var isEmpty: Swift.Bool {
@@ -117,20 +131,28 @@ public enum JsonSerializeError : Swift.Error {
   case missingRequiredInformationForKey(_: Swift.String)
 }
 extension JoseTools.JsonSerializeError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension JoseTools.JsonSerializeError : Swift.Equatable {
   public static func == (lhs: JoseTools.JsonSerializeError, rhs: JoseTools.JsonSerializeError) -> Swift.Bool
 }
 public struct JWSSigner {
   public init(jwsAlgorithm: JOSESwift.SignatureAlgorithm, jwk: JoseTools.JsonWebKey) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   public func sign(_ message: Foundation.Data, headerParams: [Swift.String : Swift.String]? = nil) throws -> Foundation.Data
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func signJWT(_ message: Foundation.Data, headerParams: [Swift.String : Swift.String]? = nil) throws -> Foundation.Data
+  #endif
 }
 extension JOSESwift.JWSHeader {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(algorithm: JOSESwift.SignatureAlgorithm, additionalHeaderParams: [Swift.String : Swift.String], keyId: Swift.String?) throws
+  #endif
 }
 public struct JWEDecrypter {
   public init(jwk: JoseTools.JsonWebKey) throws
@@ -195,7 +217,9 @@ public enum JWKUse : Swift.String {
   case JWK_SIG
   case JWK_ENC
   case JWK_SIG_ENC
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -205,7 +229,9 @@ public enum JWKType : Swift.String {
   case RSA
   case EC
   public func getKeyType() -> CryptoTools.KeyType
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -244,21 +270,41 @@ public struct JsonWebStructure {
   public var components: [Foundation.Data]
   public init(components: [Foundation.Data])
   public init(compactSerialization: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getHeader() -> [Swift.String : Any]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getRawPayload() -> Foundation.Data?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getSignature() -> Foundation.Data?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getEncryptedKey() -> Foundation.Data?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getInitializationVector() -> Foundation.Data?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getAuthenticationTag() -> Foundation.Data?
+  #endif
 }
 public struct JWEEncrypter {
   public init(jwk: JoseTools.JsonWebKey) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(jweKeyManagementAlgorithm: Swift.String, jweContentEncryptionAlgorithm: Swift.String, encryptionPublicKey: Security.SecKey, keyId: Swift.String? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(jweKeyManagementAlgorithm: Swift.String, jweContentEncryptionAlgorithm: Swift.String, encryptionPublicKey: JoseTools.JsonWebKey, keyId: Swift.String? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func encryptJWT(_ message: Foundation.Data, headerParams: [Swift.String : Swift.String]? = nil, isNested: Swift.Bool = false) throws -> Foundation.Data
+  #endif
 }
 extension JOSESwift.JWEHeader {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(keyManagementAlgorithm: JOSESwift.KeyManagementAlgorithm, contentEncryptionAlgorithm: JOSESwift.ContentEncryptionAlgorithm, additionalHeaderParams: [Swift.String : Swift.String], keyId: Swift.String?) throws
+  #endif
 }
 extension Security.SecKey {
   public class func decodeFrom(jwk: Foundation.Data) throws -> Security.SecKey
@@ -282,15 +328,19 @@ public enum JOSEError : Swift.Error {
   case initializationError(_: Swift.String)
 }
 extension JoseTools.JOSEError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension JoseTools.JOSEError : Swift.Equatable {
   public static func == (lhs: JoseTools.JOSEError, rhs: JoseTools.JOSEError) -> Swift.Bool
 }
 extension JOSESwift.JWSHeader {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(algorithm: JOSESwift.SignatureAlgorithm, additionalHeaderParams: [Swift.String : Swift.String]? = nil, keyId: Swift.String?) throws
+  #endif
 }
 extension JoseTools.JWKUse : Swift.Equatable {}
 extension JoseTools.JWKUse : Swift.Hashable {}

@@ -91,7 +91,7 @@ Configure push notifications
 
 4.  Save your changes.
 
-See the PingOne documentation [Edit an application - Native](https://docs.pingidentity.com/csh?context=pingone_edit_application_native) for more information.
+See the PingOne documentation [Edit an application - Native](https://docs.pingidentity.com/pingone/applications/p1_edit_application_native.html) for more information.
 
 ## Class Reference
 

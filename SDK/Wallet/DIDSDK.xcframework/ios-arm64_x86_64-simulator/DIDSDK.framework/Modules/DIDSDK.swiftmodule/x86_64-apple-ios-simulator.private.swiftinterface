@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name DIDSDK
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.2.1 effective-5.10 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name DIDSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.1
 import AnyCoder
 import CommonCrypto
 import CommunicationManager
@@ -40,9 +40,11 @@ public enum InitializationError : Swift.Error {
   case missingLinkHandler
 }
 extension DIDSDK.InitializationError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension DIDSDK.InitializationError : Swift.Equatable {
   public static func == (lhs: DIDSDK.InitializationError, rhs: DIDSDK.InitializationError) -> Swift.Bool
@@ -62,7 +64,9 @@ public protocol LinkHandler {
   public func setId(id: Swift.String)
   public func getPublicKeyJwk() -> [Swift.String : Swift.String]
   public func setPublicKeyJwk(publicKeyJwk: [Swift.String : Swift.String])
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getPurposes() -> [Swift.String]?
+  #endif
   public func setPurposes(purposes: [Swift.String])
   public func getType() -> Swift.String
   public func setType(type: Swift.String)
@@ -71,15 +75,25 @@ public protocol LinkHandler {
   required public init(from decoder: any Swift.Decoder) throws
 }
 public class IonDid : DIDSDK.DID {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(suffix: Swift.String, longFormDocument: DIDSDK.LongFormDocument?, encodedLongFormDocument: Swift.String?, publicKeys: JoseTools.JsonWebKeySet?, signingKey: JoseTools.JsonWebKey?)
+  #endif
   convenience public init(suffix: Swift.String)
   public func toDidString() -> Swift.String
   public func getMethod() -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getPublicKeys() -> JoseTools.JsonWebKeySet?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getPrivateSigningKey() -> JoseTools.JsonWebKey?
+  #endif
   public func getSuffix() -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getLongFormDocument() -> DIDSDK.LongFormDocument?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getEncodedLongFormDocument() -> Swift.String?
+  #endif
   @objc deinit
 }
 public class DidSupport {
@@ -99,11 +113,15 @@ extension DIDSDK.DidSupport {
   }
 }
 extension JoseTools.JsonWebKeySet {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getVerificationKey(keyId: Swift.String?) throws -> CryptoTools.PublicKey
+  #endif
 }
 public class NestedJwtGenerator {
   public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   public func createNestedJwt(for claims: JoseTools.JWTClaims, recipientJwks: JoseTools.JsonWebKeySet, senderJwks: JoseTools.JsonWebKeySet, senderId: Swift.String? = nil, recipientId: Swift.String? = nil, signingKeyId: Swift.String?, encryptionKeyId: Swift.String?) throws -> Foundation.Data
+  #endif
   @objc deinit
 }
 extension Swift.Double {
@@ -131,46 +149,74 @@ extension Swift.Double {
 public class ExpirationSignature : CommunicationManager.JsonSerializable {
   public init(applicationInstanceId: Swift.String, hash: Swift.String, expiryTimestamp: Swift.String, expirySignature: Swift.String)
   required public init(dict: [Swift.String : Any]) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getApplicationInstanceId() -> Swift.String?
+  #endif
   public func getHash() -> Swift.String
   public func getExpiryTimestamp() -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getExpiryTimeInterval() -> Foundation.TimeInterval?
+  #endif
   public func getExpirySignature() -> Swift.String
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class DistributedIdClient {
   public func setMessageHandler(messageHandler: any DIDSDK.MessageHandler)
   public func getApplicationInstance() -> DIDSDK.ApplicationInstance
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getMessageHandler() -> (any DIDSDK.MessageHandler)?
+  #endif
   public func setLinkHandler(linkHandler: any DIDSDK.LinkHandler)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getLinkHandler() -> (any DIDSDK.LinkHandler)?
+  #endif
   public func updateApplicationInstance(appInstance: DIDSDK.ApplicationInstance, pushSandbox: Swift.Bool) -> DIDSDK.CompletionHandler<Swift.Bool>
   public func updatePushToken(pushToken: Foundation.Data)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func shareData(with recipientId: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, shares: [DIDSDK.Share]) -> DIDSDK.CompletionHandler<Swift.Bool>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func requestShare(from recipientId: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, requestedKeys: [Swift.String]) -> DIDSDK.CompletionHandler<Swift.Bool>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func createClaim(for subjectId: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, claimData: [Swift.String : Swift.String], referenceClaim: DIDSDK.Claim? = nil) -> DIDSDK.CompletionHandler<DIDSDK.Claim>
+  #endif
   public func createClaimForSelf(with claimData: [Swift.String : Swift.String]) -> DIDSDK.CompletionHandler<DIDSDK.Claim>
+  #if compiler(>=5.3) && $NonescapableTypes
   public func expireClaim(_ claimReference: DIDSDK.ClaimReference, message: Swift.String?, challenge: DIDSDK.Challenge, expiresAt: Foundation.TimeInterval?) -> DIDSDK.CompletionHandler<DIDSDK.ClaimReference>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func sendSecureMessage(to recipientId: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?) -> DIDSDK.CompletionHandler<Swift.Bool>
+  #endif
   public func createClaimBuilder(forFormats claimFormats: DIDSDK.ClaimFormat...) throws -> DIDSDK.ClaimBuilder
   public func getKeys(for applicationInstanceId: Swift.String) -> DIDSDK.CompletionHandler<JoseTools.JsonWebKeySet>
   public func verifyData(_ shares: [DIDSDK.Share]) -> DIDSDK.CompletionHandler<Swift.Bool>
+  #if compiler(>=5.3) && $NonescapableTypes
   public func createRequest(with details: [Swift.String : Any], expiresAt: Foundation.TimeInterval?, registeredApp: Swift.String?) -> DIDSDK.CompletionHandler<DIDSDK.Request>
+  #endif
   public func getRequest(forId requestId: Swift.String) -> DIDSDK.CompletionHandler<DIDSDK.Request>
   public func deleteRequest(forId requestId: Swift.String) -> DIDSDK.CompletionHandler<Swift.Bool>
   @discardableResult
   public func processUrl(url: Swift.String) -> DIDSDK.CompletionHandler<Swift.Bool>
+  #if compiler(>=5.3) && $NonescapableTypes
   public func createVerifiableCredentialClaim(subjectId: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, credentialType: Swift.String, credentialData: [Swift.String : AnyCoder.AnyCodable]) -> DIDSDK.CompletionHandler<DIDSDK.Claim>
+  #endif
   @objc deinit
 }
 public struct Logo : Swift.Codable {
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getUri() -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getAltText() -> Swift.String?
+  #endif
 }
 public class OpenIDVerifiableCredentialsClient {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(didSupport: DIDSDK.DidSupport, linkHandler: (any DIDSDK.LinkHandler)?)
+  #endif
   public func getDid(for applicationInstance: DIDSDK.ApplicationInstance) throws -> any DIDSDK.DID
   @discardableResult
   public func processUrl(url: Swift.String) -> DIDSDK.CompletionHandler<Swift.Bool>
@@ -236,7 +282,9 @@ public enum ClaimFormat {
   public func getClaimReferenceForExpiry() -> DIDSDK.ClaimReference
   public func copyWithClaimData(_ claimData: [DIDSDK.SaltedData : DIDSDK.SaltedData]) -> DIDSDK.Claim
   public func copyWithReferenceId(_ referenceClaimId: DIDSDK.SaltedData) -> DIDSDK.Claim
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc override public func copy(with zone: ObjectiveC.NSZone? = nil) -> Any
+  #endif
   public func setOtherFormats(otherFormats: [Swift.String : Any])
   public func getOtherFormats() -> [Swift.String : Any]
   @objc deinit
@@ -244,28 +292,42 @@ public enum ClaimFormat {
 public struct PingData : Swift.Codable {
   public var type: Swift.String
   public var version: Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func initFrom(dict: [Swift.String : Swift.String]) -> DIDSDK.PingData?
+  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
 public protocol MessageHandler {
+  #if compiler(>=5.3) && $NonescapableTypes
   func handleShare(senderId: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, shares: [DIDSDK.Share], errors: [DIDSDK.ClaimError])
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func handleShareRequest(senderId: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, requestedKeys: [Swift.String])
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func handleClaim(senderId: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, claim: DIDSDK.Claim, errors: [DIDSDK.ClaimError])
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func handleExpiredClaim(senderId: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, expiredClaim: DIDSDK.ClaimReference, errors: [DIDSDK.ClaimError])
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func handleSecureMessage(senderId: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?)
+  #endif
   func handleError(error: DIDSDK.MessageProcessingError)
 }
 public class Endpoint {
   public func create<T, R>() -> (_ requestBody: T) -> DIDSDK.CompletionHandler<R> where T : CommunicationManager.JsonSerializableObject, T : CommunicationManager.JsonSerializableProtocol, R : CommunicationManager.JsonSerializableObject, R : CommunicationManager.JsonSerializableProtocol
   public func create<T, R>() -> (_ requestBody: T, _ coder: any CommunicationManager.CoderProtocol) -> DIDSDK.CompletionHandler<R> where T : CommunicationManager.JsonSerializableObject, T : CommunicationManager.JsonSerializableProtocol, R : CommunicationManager.JsonSerializableObject, R : CommunicationManager.JsonSerializableProtocol
-  public func createWithEmptyBody<R>() -> (() -> DIDSDK.CompletionHandler<R>) where R : CommunicationManager.JsonSerializableObject, R : CommunicationManager.JsonSerializableProtocol
+  public func createWithEmptyBody<R>() -> () -> DIDSDK.CompletionHandler<R> where R : CommunicationManager.JsonSerializableObject, R : CommunicationManager.JsonSerializableProtocol
   public func createWithEmptyBody<R>() -> (_ coder: any CommunicationManager.CoderProtocol) -> DIDSDK.CompletionHandler<R> where R : CommunicationManager.JsonSerializableObject, R : CommunicationManager.JsonSerializableProtocol
   public func createWithEmptyBodyAndPathVariables<R>() -> (_ pathVariables: Swift.String...) -> DIDSDK.CompletionHandler<R> where R : CommunicationManager.JsonSerializableObject, R : CommunicationManager.JsonSerializableProtocol
   public func createWithEmptyBodyAndPathVariables<R>() -> (_ coder: any CommunicationManager.CoderProtocol, _ pathVariables: Swift.String...) -> DIDSDK.CompletionHandler<R> where R : CommunicationManager.JsonSerializableObject, R : CommunicationManager.JsonSerializableProtocol
   public func createWithPathVariables<T, R>() -> (_ requestBody: T, _ pathVariables: Swift.String...) -> DIDSDK.CompletionHandler<R> where T : CommunicationManager.JsonSerializableObject, T : CommunicationManager.JsonSerializableProtocol, R : CommunicationManager.JsonSerializableObject, R : CommunicationManager.JsonSerializableProtocol
   public func createWithPathVariables<T, R>() -> (_ requestBody: T, _ coder: any CommunicationManager.CoderProtocol, _ pathVariables: Swift.String...) -> DIDSDK.CompletionHandler<R> where T : CommunicationManager.JsonSerializableObject, T : CommunicationManager.JsonSerializableProtocol, R : CommunicationManager.JsonSerializableObject, R : CommunicationManager.JsonSerializableProtocol
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(endpoint: Swift.String, httpMethod: CommunicationManager.HttpMethod, coder: any CommunicationManager.CoderProtocol = JsonCoder(), authTokenGenerator: DIDSDK.AuthTokenGenerator?, networkReachability: DIDSDK.NetworkReachability?)
+  #endif
   @objc deinit
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class EmptyResponse : CommunicationManager.JsonSerializable {
@@ -310,15 +372,25 @@ public enum PresentationAction : Swift.Codable, Swift.Equatable {
   public func getIssuer() -> DIDSDK.SaltedData
   public func getHolder() -> DIDSDK.SaltedData
   public func getSubject() -> DIDSDK.SaltedData
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getReferenceClaimId() -> DIDSDK.SaltedData?
+  #endif
   public func getDataJson() -> Swift.String
   public func getDataSignature() -> Swift.String
   public func getDataHash() -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getPartitionId() -> Swift.String?
+  #endif
   public func setIdExpiries(idExpiries: [DIDSDK.ExpirationSignature])
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getIdExpiries() -> [DIDSDK.ExpirationSignature]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getEarliestExpiration() -> DIDSDK.ExpirationSignature?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public func copy(with zone: ObjectiveC.NSZone? = nil) -> Any
+  #endif
   override public func toDictionary() throws -> [Swift.String : Any]
   @objc deinit
 }
@@ -387,14 +459,20 @@ public class SchemaFilter : Swift.Codable, Swift.Equatable {
   public static let SIG_SECP256K1_PUBLIC_KEY_TAG: Swift.String
   public static let SIG_SECP256K1_PRIVATE_KEY_TAG: Swift.String
   public class func generate(id: Swift.String) throws -> JoseTools.JsonWebKeySet
+  #if compiler(>=5.3) && $NonescapableTypes
   public class func updateTags(from oldId: Swift.String, to id: Swift.String, jwks: JoseTools.JsonWebKeySet, keyId: Swift.String?) throws -> JoseTools.JsonWebKeySet
+  #endif
   @objc deinit
 }
 public protocol DID {
   func toDidString() -> Swift.String
   func getMethod() -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   func getPublicKeys() -> JoseTools.JsonWebKeySet?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func getPrivateSigningKey() -> JoseTools.JsonWebKey?
+  #endif
 }
 public class Share : CommunicationManager.JsonSerializable {
   public init(keys: [Swift.String], claim: DIDSDK.Claim)
@@ -406,22 +484,40 @@ public class Share : CommunicationManager.JsonSerializable {
 @_hasMissingDesignatedInitializers public class Request : CommunicationManager.JsonSerializable {
   convenience required public init(dict: [Swift.String : Any]) throws
   override public func toDictionary() throws -> [Swift.String : Any]
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getId() -> Swift.String?
+  #endif
   public func setId(_ id: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getRedirectUrl() -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func setRedirectUrl(_ redirectUrl: Swift.String?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getApplicationInstance() -> DIDSDK.Relationship<Swift.String>?
+  #endif
   public func setApplicationInstance(_ applicationInstance: DIDSDK.Relationship<Swift.String>)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getCreatedAt() -> Swift.String?
+  #endif
   public func setCreatedAt(_ createdAt: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getExpiresAt() -> Swift.String?
+  #endif
   public func setExpiresAt(_ expiresAt: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getRegisteredApp() -> Swift.String?
+  #endif
   public func setRegisteredApp(_ registeredApp: Swift.String)
   public func getDetails() -> [Swift.String : Any]
   public func setDetails(_ details: [Swift.String : Any])
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getUrlFor(key: Swift.String) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getRequestUrl(baseUrl: Swift.String) -> Swift.String?
+  #endif
   @objc deinit
 }
 public class Relationship<T> : CommunicationManager.JsonSerializable where T : Swift.Equatable {
@@ -437,10 +533,14 @@ public class Challenge : CommunicationManager.JsonSerializable {
   public static func create() -> DIDSDK.Challenge
   public static func create(with id: Swift.String) -> DIDSDK.Challenge
   public static func create(with id: Swift.String, expiringAt: Foundation.TimeInterval) -> DIDSDK.Challenge
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(with id: Swift.String, expiresAt: Foundation.TimeInterval?)
+  #endif
   required public init(dict: [Swift.String : Any]) throws
   public func getId() -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getExpiresAt() -> Foundation.TimeInterval?
+  #endif
   public func isExpired() -> Swift.Bool
   @objc deinit
 }
@@ -474,16 +574,24 @@ public class AuthTokenGenerator {
 }
 extension DIDSDK.DistributedIdClient {
   public class Builder {
+    #if compiler(>=5.3) && $NonescapableTypes
     public init(with baseUrl: Swift.String, for applicationInstance: DIDSDK.ApplicationInstance, messageHandler: (any DIDSDK.MessageHandler)?)
+    #endif
     public func withLinkHandler(linkHandler: any DIDSDK.LinkHandler) -> DIDSDK.DistributedIdClient.Builder
     public func build() -> DIDSDK.DistributedIdClient
     @objc deinit
   }
 }
 public struct Display : Swift.Codable {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getName() -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getLogo() -> DIDSDK.Logo?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getLocale() -> Swift.String?
+  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -517,8 +625,12 @@ public struct Display : Swift.Codable {
 @_hasMissingDesignatedInitializers public class Patch : CommunicationManager.JsonSerializable, Swift.Codable {
   public func getAction() -> Swift.String
   public func getDocument() -> DIDSDK.Document
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getPublicKeys() -> [DIDSDK.IonPublicKey]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getServices() -> [DIDSDK.Service]?
+  #endif
   @objc deinit
   public func encode(to encoder: any Swift.Encoder) throws
   required public init(from decoder: any Swift.Decoder) throws
@@ -545,9 +657,11 @@ public enum MessageProcessingError : Swift.Error {
   case unknownMessage(description: Swift.String)
 }
 extension DIDSDK.MessageProcessingError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension DIDSDK.MessageProcessingError : Swift.Equatable {
   public static func == (lhs: DIDSDK.MessageProcessingError, rhs: DIDSDK.MessageProcessingError) -> Swift.Bool
@@ -563,9 +677,15 @@ extension DIDSDK.MessageProcessingError : Swift.Equatable {
 public struct CredentialIssuerMetadata : Swift.Codable {
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getCredentialIssuer() -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getDisplay() -> [DIDSDK.Display]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getDisplayByLocale(_ locale: Swift.String) -> DIDSDK.Display?
+  #endif
 }
 public protocol DidCreator {
   func getMethod() -> Swift.String
@@ -591,15 +711,25 @@ public class VPFormats : Swift.Codable {
   public func setId(_ value: Swift.String)
   public func getJwks() -> JoseTools.JsonWebKeySet
   public func setJwks(_ value: JoseTools.JsonWebKeySet)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getApplication() -> DIDSDK.Relationship<Swift.String>?
+  #endif
   public func setApplication(_ value: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getEnvironment() -> DIDSDK.Relationship<Swift.String>?
+  #endif
   public func setEnvironment(_ value: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getUser() -> DIDSDK.Relationship<Swift.String>?
+  #endif
   public func setUser(_ value: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func isPushSandbox() -> Swift.Bool?
+  #endif
   public func setPushSandbox(_ value: Swift.Bool)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getPushToken() -> Swift.String?
+  #endif
   public func setPushToken(_ value: Swift.String)
   public func setPushToken(_ value: Foundation.Data)
   public func getOsType() -> Swift.String
@@ -613,9 +743,15 @@ public class VPFormats : Swift.Codable {
 }
 public protocol BaseServiceApi {
   var baseUrl: Swift.String { get }
+  #if compiler(>=5.3) && $NonescapableTypes
   var authTokenGenerator: DIDSDK.AuthTokenGenerator? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var networkReachability: DIDSDK.NetworkReachability? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   init(baseUrl: Swift.String, authTokenGenerator: DIDSDK.AuthTokenGenerator?, networkReachability: DIDSDK.NetworkReachability?)
+  #endif
 }
 extension DIDSDK.BaseServiceApi {
   public func getEndpointFor(_ urlPath: Swift.String, httpMethod: CommunicationManager.HttpMethod) -> DIDSDK.Endpoint
@@ -652,9 +788,11 @@ public enum DidError : Swift.Error {
   case missingRequiredValue(description: Swift.String)
 }
 extension DIDSDK.DidError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension DIDSDK.DidError : Swift.Equatable {
   public static func == (lhs: DIDSDK.DidError, rhs: DIDSDK.DidError) -> Swift.Bool
@@ -673,8 +811,12 @@ public class JwkDid : DIDSDK.DID {
   public init(encodedPublicKey: Swift.String, jwks: JoseTools.JsonWebKeySet)
   public func toDidString() -> Swift.String
   public func getMethod() -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getPublicKeys() -> JoseTools.JsonWebKeySet?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getPrivateSigningKey() -> JoseTools.JsonWebKey?
+  #endif
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class OpenIDVerifiableCredentialsClientConstants {
@@ -703,14 +845,20 @@ public class JwkDid : DIDSDK.DID {
   @objc deinit
 }
 extension Swift.String {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var toDateFromISO8601: Foundation.Date? {
     get
   }
+  #endif
 }
 @_hasMissingDesignatedInitializers public class VerifiableCredentialGenerator {
   public func createVerifiableCredential(issuerDid: any DIDSDK.DID, credential: DIDSDK.Credential) throws -> DIDSDK.VerifiableCredential
+  #if compiler(>=5.3) && $NonescapableTypes
   public func createCredential(issuerId: any DIDSDK.DID, holderId: any DIDSDK.DID, type: [Swift.String], context: [Swift.String], data: [Swift.String : AnyCoder.AnyCodable], pingData: DIDSDK.PingData?) -> DIDSDK.Credential
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func fromString(string: Swift.String) throws -> [DIDSDK.VerifiableCredential]?
+  #endif
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class JwksResponse : CommunicationManager.JsonSerializable {
@@ -723,8 +871,12 @@ public class NetworkReachability {
   public var currentNetworkStatus: DIDSDK.NetworkReachability.NetworkReachabilityStatus {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(host: Swift.String)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?()
+  #endif
   @discardableResult
   public func startNotifier() -> Swift.Bool
   @discardableResult
@@ -745,8 +897,8 @@ public class NetworkReachability {
   public enum ConnectionType : Swift.Equatable {
     case automatic, manual
     public init(_ flags: SystemConfiguration.SCNetworkReachabilityFlags)
-    public func hash(into hasher: inout Swift.Hasher)
     public static func == (a: DIDSDK.NetworkReachability.ConnectionType, b: DIDSDK.NetworkReachability.ConnectionType) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
     public var hashValue: Swift.Int {
       get
     }
@@ -805,23 +957,35 @@ public class NetworkReachability {
 @_hasMissingDesignatedInitializers public class ClaimRegistration : CommunicationManager.JsonSerializable {
   required public init(dict: [Swift.String : Any]) throws
   public func setApplicationInstanceId(_ value: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getApplicationInstanceId() -> Swift.String?
+  #endif
   public func setHash(_ value: Swift.String)
   public func getHash() -> Swift.String
   public func setTransactionId(_ value: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getTransactionId() -> Swift.String?
+  #endif
   public func setPartitionId(_ value: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getPartitionId() -> Swift.String?
+  #endif
   public func setHashTimestamp(_ value: Swift.String)
   public func getHashTimestamp() -> Swift.String
   public func setHashSignature(_ value: Swift.String)
   public func getHashSignature() -> Swift.String
   public func setIdExpiries(_ value: DIDSDK.ExpirationSignature...)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getIdExpiries() -> [DIDSDK.ExpirationSignature]?
+  #endif
   public func setCreatedAt(_ value: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getCreatedAt() -> Swift.String?
+  #endif
   public func setUpdatedAt(_ value: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getUpdatedAt() -> Swift.String?
+  #endif
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class Mail : CommunicationManager.JsonSerializable {
@@ -842,9 +1006,11 @@ public enum ClaimError : Swift.Error {
   case claimGenerationException(_: Swift.String)
 }
 extension DIDSDK.ClaimError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension DIDSDK.ClaimError : Swift.Equatable {
   public static func == (lhs: DIDSDK.ClaimError, rhs: DIDSDK.ClaimError) -> Swift.Bool
@@ -855,7 +1021,9 @@ extension DIDSDK.ClaimError : Swift.Equatable {
 }
 @_hasMissingDesignatedInitializers public class VerifiablePresentationRequest : Swift.Codable {
   required public init(dict: [Swift.String : Any]) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getRequestJwt() -> Swift.String?
+  #endif
   public func setRequestJwt(requestJwt: Swift.String)
   public func getResponseType() -> Swift.String
   public func getResponseMode() -> Swift.String
@@ -865,7 +1033,9 @@ extension DIDSDK.ClaimError : Swift.Equatable {
   public func getState() -> Swift.String
   public func getRegistration() -> DIDSDK.Registration
   public func getClaim() -> DIDSDK.Claims
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getExpiration() -> Foundation.TimeInterval?
+  #endif
   @objc deinit
   public func encode(to encoder: any Swift.Encoder) throws
   required public init(from decoder: any Swift.Decoder) throws

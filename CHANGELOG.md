@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.0.4] - 2026-05-25
+
+### Added
+- Added the performance fix for Biometric Encryption
+
 ## [2.0.3] - 2025-10-25
 
 ### Added
