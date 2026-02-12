@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name CryptoTools
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.2.1 effective-5.10 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CryptoTools
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.1
 import CommonCrypto
 @_exported import CryptoTools
 import Foundation
@@ -14,7 +14,9 @@ import libsecp256k1
 extension Security.SecKey {
   public class func initFromData(keyData: Foundation.Data, keyTag: Swift.String, keyClass: CryptoTools.KeyClass, keyType: CryptoTools.KeyType) throws -> Security.SecKey
   public func saveToKeychain(keyTag: Swift.String, keyType: CryptoTools.KeyType, keyClass: CryptoTools.KeyClass) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   public class func loadFromKeychain(withTag keyTag: Swift.String, keyClass: CryptoTools.KeyClass, keyType: CryptoTools.KeyType, prompt: Swift.String? = nil, appPassword: Foundation.Data? = nil, isInSecureEnclave: Swift.Bool = false) throws -> Security.SecKey
+  #endif
   public func toData() throws -> Foundation.Data
 }
 public struct EncryptedData : CryptoTools.CryptoData {
@@ -42,8 +44,12 @@ public struct PublicKey : CryptoTools.Key {
   public init(keyData: Foundation.Data, keyType: CryptoTools.KeyType)
 }
 public struct KeyPairGenerator {
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func generateKeyPair(forKeyType keyType: CryptoTools.KeyType, publicKeyTag: Swift.String, privateKeyTag: Swift.String, appPassword: Foundation.Data? = nil) throws -> (CryptoTools.PrivateKey, CryptoTools.PublicKey)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func generateKeyPairInSecureEnclave(forKeyType keyType: CryptoTools.KeyType, publicKeyTag: Swift.String, privateKeyTag: Swift.String, appPassword: Foundation.Data? = nil) throws -> (CryptoTools.PrivateKey, CryptoTools.PublicKey)
+  #endif
 }
 extension Foundation.Data {
   public func sha256() -> Foundation.Data
@@ -59,7 +65,9 @@ extension Swift.String {
 }
 public enum DigestType : Swift.String {
   case MD5, SHA1, SHA224, SHA256, SHA384, SHA512
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -72,7 +80,9 @@ public struct MessageDigest : CryptoTools.CryptoData {
 }
 public struct KeychainHelper {
   public static func saveToKeychain(keyService: Swift.String, keyTag: Swift.String, keyValue: Foundation.Data) throws -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func retrieveFromKeychain(keyService: Swift.String, keyTag: Swift.String) -> Foundation.Data?
+  #endif
 }
 public struct EncryptedKeyStruct {
   public var encryptedKey: Foundation.Data
@@ -97,9 +107,11 @@ public enum BiometryStateError : Swift.Error, Foundation.LocalizedError {
   case tooManyFailedAttempts
   case noEnrolledBiometry
   case deviceNotSupported
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
   public static func == (a: CryptoTools.BiometryStateError, b: CryptoTools.BiometryStateError) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
@@ -128,9 +140,11 @@ public enum CryptoError : Swift.Error {
   case missingKeyData(_: Swift.String)
 }
 extension CryptoTools.CryptoError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension CryptoTools.CryptoError : Swift.Equatable {
   public static func == (lhs: CryptoTools.CryptoError, rhs: CryptoTools.CryptoError) -> Swift.Bool
@@ -163,9 +177,11 @@ public enum EncryptedKeyManagerError : Swift.Error {
   case generateKeyStructError(_: Swift.String)
 }
 extension CryptoTools.EncryptedKeyManagerError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension CryptoTools.EncryptedKeyManagerError : Swift.Equatable {
   public static func == (lhs: CryptoTools.EncryptedKeyManagerError, rhs: CryptoTools.EncryptedKeyManagerError) -> Swift.Bool
@@ -176,12 +192,18 @@ public class Secp256k1Utils {
   public static func generateSecp256K1KeyPair() throws -> (CryptoTools.PrivateKey, CryptoTools.PublicKey)
   public static func isSecp256k1Key(key: any CryptoTools.Key) -> Swift.Bool
   public static func getComponents(from publicKey: CryptoTools.PublicKey) -> (Foundation.Data, Foundation.Data)
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func encodeToJwk(publicKey: CryptoTools.PublicKey, privateKey: CryptoTools.PrivateKey?, keyId: Swift.String) -> Foundation.Data?
+  #endif
   @objc deinit
 }
 public class EncryptedKeyManager {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(appPassword: Foundation.Data? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func decryptKey(uniqueId: Swift.String, encryptedKey: Foundation.Data) throws -> CryptoTools.EncryptedKeyStruct?
+  #endif
   @objc deinit
 }
 extension Foundation.Data {
@@ -211,9 +233,11 @@ public enum EncryptedFileError : Swift.Error {
   case fileInitError(_: Swift.String)
 }
 extension CryptoTools.EncryptedFileError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension CryptoTools.EncryptedFileError : Swift.Equatable {
   public static func == (lhs: CryptoTools.EncryptedFileError, rhs: CryptoTools.EncryptedFileError) -> Swift.Bool
@@ -223,7 +247,9 @@ extension Security.SecKey {
 }
 @_hasMissingDesignatedInitializers public class EncryptedDefaults {
   public static var standard: CryptoTools.EncryptedDefaults!
-  public class func initialize(usingPassword appPassword: Foundation.Data? = nil, uniqueId: Swift.String? = nil, encryptedKey: Foundation.Data? = nil, onComplete: @escaping ((_ result: Swift.Result<CryptoTools.EncryptedKeyStruct, any Swift.Error>) -> Swift.Void))
+  #if compiler(>=5.3) && $NonescapableTypes
+  public class func initialize(usingPassword appPassword: Foundation.Data? = nil, uniqueId: Swift.String? = nil, encryptedKey: Foundation.Data? = nil, onComplete: @escaping (_ result: Swift.Result<CryptoTools.EncryptedKeyStruct, any Swift.Error>) -> Swift.Void)
+  #endif
   @discardableResult
   public func set(_ object: Swift.AnyObject, forKey key: Swift.String) -> Swift.Bool
   @discardableResult
@@ -242,15 +268,25 @@ extension Security.SecKey {
   public func set(_ float: Swift.Float, forKey key: Swift.String) -> Swift.Bool
   @discardableResult
   public func set(_ data: Foundation.Data, forKey key: Swift.String) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   public func object(forKey key: Swift.String) -> Swift.AnyObject?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func dictionary(forKey key: Swift.String) -> [Swift.String : Any]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func array(forKey key: Swift.String) -> [Any]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func string(forKey key: Swift.String) -> Swift.String?
+  #endif
   public func bool(forKey key: Swift.String) -> Swift.Bool
   public func integer(forKey key: Swift.String) -> Swift.Int
   public func double(forKey key: Swift.String) -> Swift.Double
   public func float(forKey key: Swift.String) -> Swift.Float
+  #if compiler(>=5.3) && $NonescapableTypes
   public func data(forKey key: Swift.String) -> Foundation.Data?
+  #endif
   public func removeObject(forKey key: Swift.String)
   @objc deinit
 }
@@ -261,7 +297,9 @@ public class EncryptedDefaultsConfigurator {
   public func useSecureEnclave(_ bool: Swift.Bool) -> CryptoTools.EncryptedDefaultsConfigurator
   @discardableResult
   public func setAppPasscode(_ appPassword: Foundation.Data) -> CryptoTools.EncryptedDefaultsConfigurator
+  #if compiler(>=5.3) && $NonescapableTypes
   public func initialize(onComplete: @escaping (Swift.Result<CryptoTools.EncryptedKeyStruct, any Swift.Error>) -> Swift.Void)
+  #endif
   @objc deinit
 }
 extension Security.SecKey {
@@ -276,7 +314,9 @@ public struct PrivateKey : CryptoTools.Key {
   public init(keyData: Foundation.Data, keyType: CryptoTools.KeyType)
 }
 extension Foundation.Data {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(hexString: Swift.String)
+  #endif
   public var hexDescription: Swift.String {
     get
   }
@@ -333,24 +373,42 @@ extension Security.SecKey {
   public func getKeyType() -> CryptoTools.KeyType
 }
 public protocol Key {
+  #if compiler(>=5.3) && $NonescapableTypes
   var keyRef: Security.SecKey? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var keyData: Foundation.Data! { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var keyType: CryptoTools.KeyType! { get }
+  #endif
   init(key: Security.SecKey, keyType: CryptoTools.KeyType)
+  #if compiler(>=5.3) && $NonescapableTypes
   init(withTag keyTag: Swift.String, keyType: CryptoTools.KeyType, authPrompt: Swift.String?) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   init(withTag keyTag: Swift.String, keyType: CryptoTools.KeyType, authPrompt: Swift.String?, appPassword: Foundation.Data?, isInSecureEnclave: Swift.Bool) throws
+  #endif
   init(withData keyData: Foundation.Data, keyTag: Swift.String, keyType: CryptoTools.KeyType) throws
   init(withBase64EncodedString base64String: Swift.String, keyTag: Swift.String, keyType: CryptoTools.KeyType) throws
   mutating func toData() throws -> Foundation.Data
+  #if compiler(>=5.3) && $NonescapableTypes
   mutating func toBase64String() throws -> Swift.String?
+  #endif
 }
 extension CryptoTools.Key {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(withTag keyTag: Swift.String, keyType: CryptoTools.KeyType, authPrompt: Swift.String? = nil) throws
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(withTag keyTag: Swift.String, keyType: CryptoTools.KeyType, authPrompt: Swift.String?, appPassword: Foundation.Data?, isInSecureEnclave: Swift.Bool) throws
+  #endif
   public init(withBase64EncodedString base64String: Swift.String, keyTag: Swift.String, keyType: CryptoTools.KeyType) throws
   public init(withData keyData: Foundation.Data, keyTag: Swift.String, keyType: CryptoTools.KeyType) throws
   public mutating func toData() throws -> Foundation.Data
+  #if compiler(>=5.3) && $NonescapableTypes
   public mutating func toBase64String() throws -> Swift.String?
+  #endif
   @discardableResult
   public static func removeKeyFromKeychainIfExists(withTag keyTag: Swift.String, keyType: CryptoTools.KeyType) -> Darwin.OSStatus
   @discardableResult
@@ -369,7 +427,9 @@ public struct KeyType : Swift.Equatable {
   public let keyType: Swift.String
   public let keySizeInBits: Swift.Int
   public let curve: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(keyType: Swift.String, keySizeInBits: Swift.Int, curve: Swift.String? = nil)
+  #endif
   public var debugDescripton: Swift.String {
     get
   }

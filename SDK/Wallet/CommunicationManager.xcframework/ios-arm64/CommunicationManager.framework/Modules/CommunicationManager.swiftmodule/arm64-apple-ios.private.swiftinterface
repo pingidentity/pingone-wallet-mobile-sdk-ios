@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name CommunicationManager
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.2.1 effective-5.10 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name CommunicationManager
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.1
 @_exported import CommunicationManager
 import Foundation
 import Swift
@@ -34,7 +34,9 @@ extension Swift.Mirror {
 }
 public class NetworkRetryManager {
   public init(maxRetries: Swift.Int = 5, timeUnit: Foundation.TimeInterval = 1, maxDelay: Foundation.TimeInterval = 30)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func handle(urlRequest: Foundation.URLRequest, completion: @escaping (_ responseData: Foundation.Data?, _ error: CommunicationManager.RequestError?) -> Swift.Void)
+  #endif
   @objc deinit
 }
 public enum RequestError : Swift.Error {
@@ -46,9 +48,11 @@ public enum RequestError : Swift.Error {
   case requestTimedOut
 }
 extension CommunicationManager.RequestError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension CommunicationManager.RequestError : Swift.Equatable {
   public static func == (lhs: CommunicationManager.RequestError, rhs: CommunicationManager.RequestError) -> Swift.Bool
@@ -62,10 +66,12 @@ public class RequestHeader {
   public static let header_content_type_text_plain: Swift.String
   public init(headers: [Swift.String : Swift.String])
   convenience public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   public subscript(headerField: Swift.String) -> Swift.String? {
     get
     set(newValue)
   }
+  #endif
   @discardableResult
   public func setHeaderField(_ headerField: Swift.String, headerValue: Swift.String) -> CommunicationManager.RequestHeader
   public var isEmpty: Swift.Bool {
@@ -89,7 +95,9 @@ public enum HttpMethod : Swift.String {
   case PUT
   case DELETE
   case PATCH
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -105,16 +113,26 @@ public class Request {
   public func setHeaderField(_ headerField: Swift.String, headerValue: Swift.String) -> CommunicationManager.Request
   @discardableResult
   public func setBodyParam(_ bodyField: Swift.String, bodyValue: any Swift.Decodable & Swift.Encodable) -> CommunicationManager.Request
+  #if compiler(>=5.3) && $NonescapableTypes
   @discardableResult
   public func get(coder: any CommunicationManager.CoderProtocol, completionHandler: @escaping (_ response: Any?, _ error: CommunicationManager.RequestError?) -> Swift.Void) -> CommunicationManager.Request
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @discardableResult
   public func post(coder: any CommunicationManager.CoderProtocol, completionHandler: @escaping (_ response: Any?, _ error: CommunicationManager.RequestError?) -> Swift.Void) -> CommunicationManager.Request
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @discardableResult
   public func put(coder: any CommunicationManager.CoderProtocol, completionHandler: @escaping (_ response: Any?, _ error: CommunicationManager.RequestError?) -> Swift.Void) -> CommunicationManager.Request
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @discardableResult
   public func delete(coder: any CommunicationManager.CoderProtocol, completionHandler: @escaping (_ response: Any?, _ error: CommunicationManager.RequestError?) -> Swift.Void) -> CommunicationManager.Request
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @discardableResult
   public func response(coder: any CommunicationManager.CoderProtocol, httpMethod: CommunicationManager.HttpMethod, completionHandler: @escaping (_ response: Any?, _ error: CommunicationManager.RequestError?) -> Swift.Void) -> CommunicationManager.Request
+  #endif
   @objc deinit
 }
 extension Foundation.Data {
@@ -142,9 +160,11 @@ public enum JsonSerializableError : Swift.Error {
   case missingRequiredInformationForKey(_: Swift.String)
 }
 extension CommunicationManager.JsonSerializableError : Foundation.LocalizedError {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 extension CommunicationManager.JsonSerializableError : Swift.Equatable {
   public static func == (lhs: CommunicationManager.JsonSerializableError, rhs: CommunicationManager.JsonSerializableError) -> Swift.Bool
@@ -152,10 +172,12 @@ extension CommunicationManager.JsonSerializableError : Swift.Equatable {
 public class RequestBody {
   public init(body: [Swift.String : Any])
   convenience public init()
+  #if compiler(>=5.3) && $NonescapableTypes
   public subscript(bodyField: Swift.String) -> Any? {
     get
     set(newValue)
   }
+  #endif
   @discardableResult
   public func setBodyParam(_ bodyField: Swift.String, bodyValue: any Swift.Decodable & Swift.Encodable) -> CommunicationManager.RequestBody
   public func getParams() -> [Swift.String : Any]

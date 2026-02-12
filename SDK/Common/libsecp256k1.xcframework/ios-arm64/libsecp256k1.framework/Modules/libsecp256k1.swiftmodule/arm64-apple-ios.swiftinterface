@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name libsecp256k1
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.2.1 effective-5.10 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name libsecp256k1
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.1
 import Foundation
 import Swift
 import _Concurrency
@@ -134,7 +134,9 @@ extension libsecp256k1.secp256k1 {
 }
 extension libsecp256k1.secp256k1.KeyAgreement.PrivateKey {
   public typealias HashFunctionType = @convention(c) (Swift.UnsafeMutablePointer<Swift.UInt8>?, Swift.UnsafePointer<Swift.UInt8>?, Swift.UnsafePointer<Swift.UInt8>?, Swift.UnsafeMutableRawPointer?) -> Swift.Int32
+  #if compiler(>=5.3) && $NonescapableTypes
   public func sharedSecretFromKeyAgreement(with publicKeyShare: libsecp256k1.secp256k1.KeyAgreement.PublicKey, handler: libsecp256k1.secp256k1.KeyAgreement.PrivateKey.HashFunctionType? = nil, data: Swift.UnsafeMutableRawPointer? = nil) throws -> libsecp256k1.SharedSecret
+  #endif
 }
 public enum secp256k1Error : Swift.Error {
   case incorrectKeySize
@@ -217,7 +219,9 @@ extension libsecp256k1.secp256k1 {
     public var rawValue: Swift.UInt32 {
       get
     }
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.UInt32)
+    #endif
     public typealias RawValue = Swift.UInt32
   }
 }
@@ -402,7 +406,9 @@ extension libsecp256k1.secp256k1.Signing.SchnorrSigner {
   public func signature<D>(for digest: D) throws -> libsecp256k1.secp256k1.Signing.SchnorrSignature where D : libsecp256k1.Digest
   public func signature<D>(for data: D, auxiliaryRand: [Swift.UInt8]) throws -> libsecp256k1.secp256k1.Signing.SchnorrSignature where D : Foundation.DataProtocol
   public func signature<D>(for digest: D, auxiliaryRand: [Swift.UInt8]) throws -> libsecp256k1.secp256k1.Signing.SchnorrSignature where D : libsecp256k1.Digest
+  #if compiler(>=5.3) && $NonescapableTypes
   public func signature(message: inout [Swift.UInt8], auxiliaryRand: Swift.UnsafeMutableRawPointer?) throws -> libsecp256k1.secp256k1.Signing.SchnorrSignature
+  #endif
 }
 extension libsecp256k1.secp256k1.Signing {
   public struct SchnorrValidator {

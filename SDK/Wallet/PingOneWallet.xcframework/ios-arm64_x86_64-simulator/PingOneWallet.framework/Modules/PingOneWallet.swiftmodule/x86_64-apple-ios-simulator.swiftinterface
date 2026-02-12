@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name PingOneWallet
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.2.1 effective-5.10 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name PingOneWallet
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.1
 import AnyCoder
 import CommunicationManager
 import CryptoTools
@@ -36,7 +36,9 @@ public class PollingHelper {
   @objc deinit
 }
 extension DIDSDK.ApplicationInstance {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getPushToken() -> Foundation.Data?
+  #endif
 }
 extension PingOneWallet.PingOneWalletClient {
   public class Builder {
@@ -57,13 +59,27 @@ extension PingOneWallet.PingOneWalletClient {
 }
 public struct IssuerMetadata {
   public init(credentialIssuerMetadata: DIDSDK.CredentialIssuerMetadata)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getLogo(_ locale: Swift.String) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getLogo() -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getAltTextForLogo(_ locale: Swift.String) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getAltTextForLogo() -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getName(_ locale: Swift.String) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getName() -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getCredentialIssuer() -> Swift.String?
+  #endif
   public func isEmpty() -> Swift.Bool
 }
 extension DIDSDK.Logo {
@@ -83,9 +99,15 @@ public struct WalletError : PingOneWallet.WalletEvent {
   public func getError() -> PingOneWallet.WalletException
 }
 public protocol WalletCallbackHandler {
+  #if compiler(>=5.3) && $NonescapableTypes
   func handleCredentialIssuance(issuer: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, claim: DIDSDK.Claim, errors: [PingOneWallet.WalletException]) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func handleCredentialRevocation(issuer: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, claimReference: DIDSDK.ClaimReference, errors: [PingOneWallet.WalletException]) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func handleCredentialPresentation(sender: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, claim: [DIDSDK.Share], errors: [PingOneWallet.WalletException])
+  #endif
   func handleCredentialRequest(_ presentationRequest: PingOneWallet.PresentationRequest)
   @available(*, deprecated, renamed: "handleEvent", message: "This method is deprecated and will be removed in upcoming updates. Use handleEvent instead")
   func handleError(_ error: PingOneWallet.WalletException)
@@ -96,13 +118,19 @@ extension PingOneWallet.WalletCallbackHandler {
 }
 @_hasMissingDesignatedInitializers public class CredentialUtils {
   public static func getCredentialIssuerMetadataFromClaim(_ claim: DIDSDK.Claim) -> DIDSDK.CompletionHandler<PingOneWallet.IssuerMetadata>
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func getCardImageFromClaim(_ claim: DIDSDK.Claim) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func getPingVersionFromClaim(_ claim: DIDSDK.Claim) -> DIDSDK.PingData?
+  #endif
   @objc deinit
 }
 public enum CredentialEventType : Swift.String, Swift.Codable {
   case CREDENTIAL_UPDATED
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -110,39 +138,59 @@ public enum CredentialEventType : Swift.String, Swift.Codable {
 }
 public enum CredentialAction : Swift.String, Swift.Codable {
   case DELETE
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
   }
 }
 @_hasMissingDesignatedInitializers public class WalletEncryptedStorageManager : PingOneWallet.StorageManagerContract {
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func initialize(errorHandler: (any PingOneWallet.StorageErrorHandler)?) -> DIDSDK.CompletionHandler<any PingOneWallet.StorageManagerContract>
+  #endif
   public static func deleteEncryptedKey()
   public func setStorageErrorHandler(_ storageErrorHandler: any PingOneWallet.StorageErrorHandler)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getStorageErrorHandler() -> (any PingOneWallet.StorageErrorHandler)?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "This method should only be used when migrating from V1 SDK. The application instance returned here will be deleted from storage after this call so you must re-save the application instance.")
   public func getApplicationInstance() -> DIDSDK.ApplicationInstance?
+  #endif
   public func saveApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion, applicationInstance: DIDSDK.ApplicationInstance)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion) -> DIDSDK.ApplicationInstance?
+  #endif
   public func deleteApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion)
   public func saveClaim(_ claim: DIDSDK.Claim)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getClaim(claimId: Swift.String) -> DIDSDK.Claim?
+  #endif
   public func saveClaimReference(_ claimReference: DIDSDK.ClaimReference)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getClaimReference(claimReferenceId: Swift.String) -> DIDSDK.ClaimReference?
+  #endif
   public func deleteClaim(_ claimId: Swift.String)
   public func saveStringSet(_ set: [Swift.String], for key: Swift.String)
   public func getStringSet(for key: Swift.String) -> [Swift.String]
   public func saveString(_ str: Swift.String, for key: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getString(for key: Swift.String) -> Swift.String?
+  #endif
   @objc deinit
 }
 public class DataRepository {
   required public init(_ storageManager: any PingOneWallet.StorageManagerContract)
   public func saveCredential(_ credential: DIDSDK.Claim)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getCredential(for id: Swift.String) -> DIDSDK.Claim?
+  #endif
   public func saveCredentialReference(_ credentialReference: DIDSDK.ClaimReference)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getCredentialReference(for id: Swift.String) -> DIDSDK.ClaimReference?
+  #endif
   public func isCredentialRevoked(credentialId: Swift.String) -> Swift.Bool
   public func deleteCredential(forId id: Swift.String)
   public func getAllCredentials() -> [DIDSDK.Claim]
@@ -151,19 +199,27 @@ public class DataRepository {
   public func saveCredentialReferenceIds(_ credentialReferenceIds: [Swift.String])
   public func saveRegions(_ regions: Swift.Set<PingOneWallet.PingOneRegion>)
   public func setStorageErrorHandler(_ storageErrorHandler: any PingOneWallet.StorageErrorHandler)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getStorageErrorHandler() -> (any PingOneWallet.StorageErrorHandler)?
+  #endif
   public func saveApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion, applicationInstance: DIDSDK.ApplicationInstance)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion) -> DIDSDK.ApplicationInstance?
+  #endif
   public func deleteApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion)
   public func saveString(_ str: Swift.String, for key: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getString(for key: Swift.String) -> Swift.String?
+  #endif
   public func saveStringSet(_ set: [Swift.String], for key: Swift.String)
   public func getStringSet(for key: Swift.String) -> [Swift.String]
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class EncryptedFilesHelper {
   public func saveToFile(string: Swift.String, for fileName: Swift.String) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   public func readFromFile(_ fileName: Swift.String) throws -> Swift.String?
+  #endif
   public func deleteFile(withName fileName: Swift.String) throws
   @objc deinit
 }
@@ -177,25 +233,39 @@ public struct UnknownEvent : PingOneWallet.WalletEvent {
 }
 public protocol StorageManagerContract {
   func setStorageErrorHandler(_ storageErrorHandler: any PingOneWallet.StorageErrorHandler)
+  #if compiler(>=5.3) && $NonescapableTypes
   func getStorageErrorHandler() -> (any PingOneWallet.StorageErrorHandler)?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, message: "This method should only be used when migrating from V1 SDK. The application instance returned here will be deleted from storage after this call so you must re-save the application instance.")
   func getApplicationInstance() -> DIDSDK.ApplicationInstance?
+  #endif
   func saveApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion, applicationInstance: DIDSDK.ApplicationInstance)
+  #if compiler(>=5.3) && $NonescapableTypes
   func getApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion) -> DIDSDK.ApplicationInstance?
+  #endif
   func deleteApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion)
   func saveClaim(_ claim: DIDSDK.Claim)
+  #if compiler(>=5.3) && $NonescapableTypes
   func getClaim(claimId: Swift.String) -> DIDSDK.Claim?
+  #endif
   func saveClaimReference(_ claimReference: DIDSDK.ClaimReference)
+  #if compiler(>=5.3) && $NonescapableTypes
   func getClaimReference(claimReferenceId: Swift.String) -> DIDSDK.ClaimReference?
+  #endif
   func deleteClaim(_ claimId: Swift.String)
   func saveString(_ str: Swift.String, for key: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   func getString(for key: Swift.String) -> Swift.String?
+  #endif
   func saveStringSet(_ set: [Swift.String], for key: Swift.String)
   func getStringSet(for key: Swift.String) -> [Swift.String]
 }
 @_hasMissingDesignatedInitializers public class PresentationResult {
   public func getPresentationStatus() -> DIDSDK.PresentationStatus
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getDetails() -> [Swift.String : Any]?
+  #endif
   @objc deinit
 }
 public struct PairingRequest {
@@ -213,13 +283,23 @@ public struct StorageKeys {
 }
 @_hasMissingDesignatedInitializers public class PingOneWalletClient {
   public func registerStorageManager(_ storageManager: any PingOneWallet.StorageManagerContract)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getApplicationInstance(forRegion walletRegion: PingOneWallet.PingOneRegion) -> DIDSDK.ApplicationInstance?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getStorageManager() -> (any PingOneWallet.StorageManagerContract)!
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getDataRepository() -> PingOneWallet.DataRepository!
+  #endif
   public func registerCallbackHandler(_ callbackHandler: any PingOneWallet.WalletCallbackHandler)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func pairWallet(for pairingRequest: PingOneWallet.PairingRequest, pushToken: Foundation.Data? = nil, isSandbox: Swift.Bool? = nil) -> DIDSDK.CompletionHandler<DIDSDK.ApplicationInstance>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @available(*, deprecated, renamed: "pairWallet", message: "This method is deprecated and will be removed in upcoming updates. Use other pairWallet that accepts PairingRequest as a param instead")
   public func pairWallet(for presentationRequest: PingOneWallet.PresentationRequest, pushToken: Swift.String? = nil, isSandbox: Swift.Bool? = nil) -> DIDSDK.CompletionHandler<DIDSDK.ApplicationInstance>
+  #endif
   @discardableResult
   public func updatePushTokens(_ pushToken: Foundation.Data, isSandbox: Swift.Bool = false) -> [DIDSDK.ApplicationInstance]
   @discardableResult
@@ -230,8 +310,12 @@ public struct StorageKeys {
   @available(*, deprecated, renamed: "processPingOneRequest", message: "This method is deprecated and will be removed in upcoming updates. Use processPingOneRequest instead")
   public func processQrContent(_ qrContent: Swift.String)
   public func processPingOneRequest(_ request: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   public func processNotification(_ userInfo: [Swift.AnyHashable : Any]?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func pollForMessages(_ pollingInterval: Foundation.TimeInterval? = nil)
+  #endif
   public func stopPolling()
   public func checkForMessages()
   public func findMatchingCredentialsForRequest(_ request: PingOneWallet.PresentationRequest) -> PingOneWallet.PresentationMatcherResult
@@ -247,11 +331,21 @@ extension PingOneWallet.PingOneWalletClient : DIDSDK.LinkHandler {
   public func handleError(error: any Swift.Error)
 }
 extension PingOneWallet.PingOneWalletClient {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func handleShare(senderId: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, shares: [DIDSDK.Share], errors: [DIDSDK.ClaimError], appInstance: DIDSDK.ApplicationInstance)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func handleShareRequest(senderId: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, requestedKeys: [Swift.String], appInstance: DIDSDK.ApplicationInstance)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func handleClaim(senderId: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, claim: DIDSDK.Claim, errors: [DIDSDK.ClaimError], appInstance: DIDSDK.ApplicationInstance)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func handleExpiredClaim(senderId: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, expiredClaim: DIDSDK.ClaimReference, errors: [DIDSDK.ClaimError], appInstance: DIDSDK.ApplicationInstance)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func handleSecureMessage(senderId: Swift.String, message: Swift.String?, challenge: DIDSDK.Challenge?, appInstance: DIDSDK.ApplicationInstance)
+  #endif
   public func handleError(error: DIDSDK.MessageProcessingError, appInstance: DIDSDK.ApplicationInstance)
   public func handleRequest(request: DIDSDK.Request, appInstance: DIDSDK.ApplicationInstance)
   public func handleError(error: any Swift.Error, appInstance: DIDSDK.ApplicationInstance)
@@ -265,19 +359,25 @@ public enum StorageError : Swift.Error, Foundation.LocalizedError {
   case cannotDeleteKey(key: Swift.String, debugDescripton: Swift.String?, underlyingError: (any Swift.Error)?)
   case cannotStoreValueForKey(key: Swift.String, value: Swift.String?, debugDescripton: Swift.String?, underlyingError: (any Swift.Error)?)
   case cannotRetrieveValueForKey(key: Swift.String, debugDescripton: Swift.String?, underlyingError: (any Swift.Error)?)
+  #if compiler(>=5.3) && $NonescapableTypes
   public var underlyingError: (any Swift.Error)? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 public protocol StorageErrorHandler {
   func handleStorageError(_ error: PingOneWallet.StorageError)
 }
 @propertyWrapper public struct CodableIgnore<T> : Swift.Codable {
   public var wrappedValue: T?
+  #if compiler(>=5.3) && $NonescapableTypes
   public init(wrappedValue: T?)
+  #endif
   public init(from decoder: any Swift.Decoder) throws
   public func encode(to encoder: any Swift.Encoder) throws
 }
@@ -298,9 +398,11 @@ public struct PingOneRegion : Swift.Hashable, Swift.Codable {
   public func getKey() -> Swift.String
   public func getUrl() -> Swift.String
   public static func == (lhs: PingOneWallet.PingOneRegion, rhs: PingOneWallet.PingOneRegion) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func getRegionForHost(_ host: Swift.String) -> PingOneWallet.PingOneRegion?
-  public func hash(into hasher: inout Swift.Hasher)
+  #endif
   public func encode(to encoder: any Swift.Encoder) throws
+  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
@@ -325,18 +427,26 @@ public enum WalletException : Swift.Error, Foundation.LocalizedError {
   case failedToUpdateApplicationInstance(id: Swift.String, debugDescription: Swift.String)
   case cannotUpdateApplicationInstances(underlyingErrors: [any Swift.Error])
   case mustInitClientWithApplicationInstance(debugDescription: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
   public var claimError: DIDSDK.ClaimError? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var underlyingErrors: [any Swift.Error]? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var underlyingError: (any Swift.Error)? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var errorDescription: Swift.String? {
     get
   }
+  #endif
 }
 @_hasMissingDesignatedInitializers public class CredentialsPresentation {
   convenience public init(presentationRequest: PingOneWallet.PresentationRequest)
@@ -352,30 +462,46 @@ public struct ClaimKeys {
   public static let cardType: Swift.String
 }
 public struct RequestedKey {
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func parseFromStringWith(regex: Swift.String, string: Swift.String) -> [Swift.String]?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getCardType() -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getCardKey() -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getIssuerIds() -> [Swift.String]?
+  #endif
   public func getRawKey() -> Swift.String
 }
 public protocol WalletEvent {
   static var TYPE: PingOneWallet.WalletEventType { get }
   var sender: Swift.String { get }
+  #if compiler(>=5.3) && $NonescapableTypes
   var challenge: DIDSDK.Challenge? { get }
+  #endif
   func getType() -> PingOneWallet.WalletEventType
   func getSender() -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   func getChalllenge() -> DIDSDK.Challenge?
+  #endif
 }
 extension PingOneWallet.WalletEvent {
   public func getSender() -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getChalllenge() -> DIDSDK.Challenge?
+  #endif
 }
 public enum WalletEventType : Swift.String {
   case ERROR
   case PAIRING
   case CREDENTIAL_UPDATE
   case UNKNOWN
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -389,13 +515,19 @@ public struct WalletPairingEvent : PingOneWallet.WalletEvent {
   public func getType() -> PingOneWallet.WalletEventType
   public func getPairingEventType() -> PingOneWallet.WalletPairingEventType
   public func getPairingRequest() -> PingOneWallet.PairingRequest
+  #if compiler(>=5.3) && $NonescapableTypes
   public func isSuccess() -> Swift.Bool?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getError() -> PingOneWallet.WalletException?
+  #endif
 }
 public enum WalletPairingEventType : Swift.String, Swift.Codable {
   case PAIRING_RESPONSE
   case PAIRING_REQUEST
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -403,7 +535,9 @@ public enum WalletPairingEventType : Swift.String, Swift.Codable {
 }
 public enum PairingError : Swift.String, Swift.Error, Foundation.LocalizedError, Swift.Codable {
   case WALLET_ALREADY_PAIRED, WALLET_DISABLED, APP_PACKAGE_MISMATCH, UNEXPECTED_ERROR
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -423,15 +557,25 @@ public func logattention(_ message: Any, fileName: Swift.String = #fileID, funct
   public func isNativePresentationRequest() -> Swift.Bool
   public func setApplicationInstanceId(_ appInstanceId: Swift.String)
   public func getApplicationInstanceId() -> Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getRequestor() -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getSessionId() -> Swift.String?
+  #endif
   public func isSessionExpired() -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getAction() -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getPurpose(forKey key: Swift.String? = nil) -> Swift.String?
+  #endif
   public func getKeys() -> [PingOneWallet.RequestedKey]
   public func getStringKeys() -> [Swift.String]
   public func isPairingRequest() -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   public func getPairingRequest() -> PingOneWallet.PairingRequest?
+  #endif
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class CredentialMatcherResult {

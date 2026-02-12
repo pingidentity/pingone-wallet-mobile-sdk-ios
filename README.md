@@ -83,7 +83,7 @@ See the Apple guide [Establishing a Token-Based Connection to APNs](https://deve
 
 Configure push notifications
     
-1. See the PingOne documentation for [Adding an application - Native](https://docs.pingidentity.com/r/en-us/pingone/p1_add_app_worker) to register your wallet app.
+1. See the PingOne documentation for [Adding an application - Native](https://docs.pingidentity.com/pingone/applications/p1_applications_add_applications.html) to register your wallet app.
     
 2. After adding your wallet application, Go to Mobile -> Edit (📝) -> Configure for iOS -> Add Push Notifications
     
@@ -91,7 +91,7 @@ Configure push notifications
 
 4.  Save your changes.
 
-See the PingOne documentation [Edit an application - Native](https://docs.pingidentity.com/csh?context=pingone_edit_application_native) for more information.
+See the PingOne documentation [Edit an application - Native](https://docs.pingidentity.com/pingone/applications/p1_edit_application_native.html) for more information.
 
 ## Class Reference
 

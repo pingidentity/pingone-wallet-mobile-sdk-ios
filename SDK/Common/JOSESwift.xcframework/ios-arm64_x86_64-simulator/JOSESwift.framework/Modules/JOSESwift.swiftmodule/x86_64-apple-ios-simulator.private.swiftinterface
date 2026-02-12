@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name JOSESwift
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.2.1 effective-5.10 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name JOSESwift
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.1
 import CommonCrypto
 import Compression
 import CryptoKit
@@ -23,7 +23,9 @@ public protocol VerifierProtocol {
   func verify(_ signingInput: Foundation.Data, against signature: Foundation.Data) throws -> Swift.Bool
 }
 public struct Verifier {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?<KeyType>(signatureAlgorithm: JOSESwift.SignatureAlgorithm, key: KeyType)
+  #endif
   public init(customVerifier verifier: any JOSESwift.VerifierProtocol)
 }
 public typealias ECPublicKeyComponents = (crv: Swift.String, x: Foundation.Data, y: Foundation.Data)
@@ -79,7 +81,9 @@ extension Security.SecKey : JOSESwift.ExpressibleAsECPrivateKeyComponents {
   public func ecPrivateKeyComponents() throws -> JOSESwift.ECPrivateKeyComponents
 }
 public struct Decrypter {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?<KeyType>(keyManagementAlgorithm: JOSESwift.KeyManagementAlgorithm, contentEncryptionAlgorithm: JOSESwift.ContentEncryptionAlgorithm, decryptionKey: KeyType)
+  #endif
   public init(customKeyManagementMode keyManagementMode: any JOSESwift.DecryptionKeyManagementMode, customContentDecrypter contentDecrypter: any JOSESwift.ContentDecrypter)
 }
 public struct JWS {
@@ -167,13 +171,21 @@ public enum JWKParameter : Swift.String, Swift.CodingKey {
   case X509CertificateChain
   case X509CertificateSHA1Thumbprint
   case X509CertificateSHA256Thumbprint
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(stringValue: Swift.String)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(intValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   public var intValue: Swift.Int? {
     get
   }
+  #endif
   public var rawValue: Swift.String {
     get
   }
@@ -185,13 +197,21 @@ public enum RSAParameter : Swift.String, Swift.CodingKey {
   case modulus
   case exponent
   case privateExponent
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(stringValue: Swift.String)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(intValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   public var intValue: Swift.Int? {
     get
   }
+  #endif
   public var rawValue: Swift.String {
     get
   }
@@ -201,13 +221,21 @@ public enum RSAParameter : Swift.String, Swift.CodingKey {
 }
 public enum SymmetricKeyParameter : Swift.String, Swift.CodingKey {
   case key
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(stringValue: Swift.String)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(intValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   public var intValue: Swift.Int? {
     get
   }
+  #endif
   public var rawValue: Swift.String {
     get
   }
@@ -220,13 +248,21 @@ public enum ECParameter : Swift.String, Swift.CodingKey {
   case x
   case y
   case privateKey
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(stringValue: Swift.String)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(intValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
   public var intValue: Swift.Int? {
     get
   }
+  #endif
   public var rawValue: Swift.String {
     get
   }
@@ -301,7 +337,9 @@ public enum JWKKeyType : Swift.String, Swift.Codable {
   case RSA
   case OCT
   case EC
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -311,9 +349,15 @@ public protocol JWK : Swift.Decodable, Swift.Encodable {
   var keyType: JOSESwift.JWKKeyType { get }
   var parameters: [Swift.String : Swift.String] { get }
   var requiredParameters: [Swift.String : Swift.String] { get }
+  #if compiler(>=5.3) && $NonescapableTypes
   subscript(parameter: Swift.String) -> Swift.String? { get }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func jsonString() -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   func jsonData() -> Foundation.Data?
+  #endif
   @available(iOS 11.0, *)
   func thumbprint(algorithm: JOSESwift.JWKThumbprintAlgorithm) throws -> Swift.String
   @available(iOS 11.0, *)
@@ -324,17 +368,39 @@ extension JOSESwift.JWK {
   public func thumbprint(algorithm: JOSESwift.JWKThumbprintAlgorithm = .SHA256) throws -> Swift.String
 }
 public protocol CommonHeaderParameterSpace {
+  #if compiler(>=5.3) && $NonescapableTypes
   var jku: Foundation.URL? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var jwk: Swift.String? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var jwkTyped: (any JOSESwift.JWK)? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var kid: Swift.String? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var x5u: Foundation.URL? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var x5c: [Swift.String]? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var x5t: Swift.String? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var x5tS256: Swift.String? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var typ: Swift.String? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var cty: Swift.String? { get set }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   var crit: [Swift.String]? { get set }
+  #endif
 }
 extension JOSESwift.ECPrivateKey {
   public func getPrivate() -> JOSESwift.ECPrivateKey
@@ -357,55 +423,79 @@ public struct JWSHeader {
   public init(parameters: [Swift.String : Any]) throws
 }
 extension JOSESwift.JWSHeader {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var algorithm: JOSESwift.SignatureAlgorithm? {
     get
   }
+  #endif
 }
 extension JOSESwift.JWSHeader : JOSESwift.CommonHeaderParameterSpace {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var jku: Foundation.URL? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var jwk: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var jwkTyped: (any JOSESwift.JWK)? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var kid: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var x5u: Foundation.URL? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var x5c: [Swift.String]? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var x5t: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var x5tS256: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var typ: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var cty: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var crit: [Swift.String]? {
     get
     set
   }
+  #endif
 }
 public protocol CompactSerializable {
   func serialize(to serializer: inout any JOSESwift.CompactSerializer)
@@ -422,7 +512,9 @@ public protocol SignerProtocol {
   func sign(_ signingInput: Foundation.Data) throws -> Foundation.Data
 }
 public struct Signer {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?<KeyType>(signatureAlgorithm: JOSESwift.SignatureAlgorithm, key: KeyType)
+  #endif
   public init(customSigner signer: any JOSESwift.SignerProtocol)
 }
 public enum JOSESwiftError : Swift.Error {
@@ -459,8 +551,12 @@ public enum JOSESwiftError : Swift.Error {
   case signingAlgorithmMismatch
 }
 extension Foundation.Data {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(base64URLEncoded base64URLString: Swift.String)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(base64URLEncoded base64URLData: Foundation.Data)
+  #endif
   public func base64URLEncodedString() -> Swift.String
   public func base64URLEncodedData() -> Foundation.Data
 }
@@ -473,7 +569,9 @@ extension Foundation.Data : JOSESwift.ExpressibleAsECPrivateKeyComponents {
   public func ecPrivateKeyComponents() throws -> JOSESwift.ECPrivateKeyComponents
 }
 public struct Encrypter {
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?<KeyType>(keyManagementAlgorithm: JOSESwift.KeyManagementAlgorithm, contentEncryptionAlgorithm: JOSESwift.ContentEncryptionAlgorithm, encryptionKey: KeyType, agreementPartyUInfo: Foundation.Data? = nil, agreementPartyVInfo: Foundation.Data? = nil, pbes2SaltInputLength: Swift.Int? = nil)
+  #endif
   public init(customKeyManagementMode keyManagementMode: any JOSESwift.EncryptionKeyManagementMode, customContentEncrypter contentEncrypter: any JOSESwift.ContentEncrypter)
 }
 public struct Payload : JOSESwift.DataConvertible {
@@ -490,7 +588,9 @@ public enum ECCurveType : Swift.String, Swift.Codable {
   case P256
   case P384
   case P521
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -502,24 +602,34 @@ public enum ECCompression : Swift.UInt8 {
   case Uncompressed
   case HybridYEven
   case HybridYOdd
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.UInt8)
+  #endif
   public typealias RawValue = Swift.UInt8
   public var rawValue: Swift.UInt8 {
     get
   }
 }
 public protocol DataConvertible {
+  #if compiler(>=5.3) && $NonescapableTypes
   init?(_ data: Foundation.Data)
+  #endif
   func data() -> Foundation.Data
 }
 extension JOSESwift.JWK {
+  #if compiler(>=5.3) && $NonescapableTypes
   public subscript(parameter: Swift.String) -> Swift.String? {
     get
   }
+  #endif
 }
 extension JOSESwift.JWK {
+  #if compiler(>=5.3) && $NonescapableTypes
   public func jsonString() -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func jsonData() -> Foundation.Data?
+  #endif
 }
 public struct JWEHeader {
   public init(keyManagementAlgorithm: JOSESwift.KeyManagementAlgorithm, contentEncryptionAlgorithm: JOSESwift.ContentEncryptionAlgorithm)
@@ -527,91 +637,131 @@ public struct JWEHeader {
   public init(parameters: [Swift.String : Any]) throws
 }
 extension JOSESwift.JWEHeader {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var keyManagementAlgorithm: JOSESwift.KeyManagementAlgorithm? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var contentEncryptionAlgorithm: JOSESwift.ContentEncryptionAlgorithm? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var compressionAlgorithm: JOSESwift.CompressionAlgorithm? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var zip: Swift.String? {
     get
     set
   }
+  #endif
 }
 extension JOSESwift.JWEHeader : JOSESwift.CommonHeaderParameterSpace {
+  #if compiler(>=5.3) && $NonescapableTypes
   public var jku: Foundation.URL? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var jwk: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var jwkTyped: (any JOSESwift.JWK)? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var kid: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var x5u: Foundation.URL? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var x5c: [Swift.String]? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var x5t: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var x5tS256: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var typ: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var cty: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var crit: [Swift.String]? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var epk: JOSESwift.ECPublicKey? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var apu: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var apv: Swift.String? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var p2s: Foundation.Data? {
     get
     set
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public var p2c: Swift.Int? {
     get
     set
   }
+  #endif
 }
 extension Foundation.Data : JOSESwift.ExpressibleAsRSAPublicKeyComponents {
   public static func representing(rsaPublicKeyComponents components: JOSESwift.RSAPublicKeyComponents) throws -> Foundation.Data
   public func rsaPublicKeyComponents() throws -> JOSESwift.RSAPublicKeyComponents
 }
-public typealias SymmetricKeyComponents = (Foundation.Data)
+public typealias SymmetricKeyComponents = Foundation.Data
 public protocol ExpressibleAsSymmetricKeyComponents {
   static func representing(symmetricKeyComponents components: JOSESwift.SymmetricKeyComponents) throws -> Self
   func symmetricKeyComponents() throws -> JOSESwift.SymmetricKeyComponents
@@ -640,8 +790,12 @@ public struct JWKSet {
   public let keys: [any JOSESwift.JWK]
   public init(keys: [any JOSESwift.JWK])
   public init(data: Foundation.Data) throws
+  #if compiler(>=5.3) && $NonescapableTypes
   public func jsonString() -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func jsonData() -> Foundation.Data?
+  #endif
 }
 extension JOSESwift.JWKSet : Swift.Collection {
   public typealias ArrayType = [any JOSESwift.JWK]
@@ -683,7 +837,9 @@ public enum SignatureAlgorithm : Swift.String {
   case ES384
   case ES512
   case ES256K
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -704,10 +860,14 @@ public enum KeyManagementAlgorithm : Swift.String, Swift.CaseIterable {
   case PBES2_HS256_A128KW
   case PBES2_HS384_A192KW
   case PBES2_HS512_A256KW
+  #if compiler(>=5.3) && $NonescapableTypes
   public var keyWrapAlgorithm: JOSESwift.KeyManagementAlgorithm? {
     get
   }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias AllCases = [JOSESwift.KeyManagementAlgorithm]
   public typealias RawValue = Swift.String
   nonisolated public static var allCases: [JOSESwift.KeyManagementAlgorithm] {
@@ -724,7 +884,9 @@ public enum ContentEncryptionAlgorithm : Swift.String {
   case A256GCM
   case A192GCM
   case A128GCM
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -734,7 +896,9 @@ public enum HMACAlgorithm : Swift.String {
   case SHA512
   case SHA384
   case SHA256
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -742,7 +906,9 @@ public enum HMACAlgorithm : Swift.String {
 }
 public enum JWKThumbprintAlgorithm : Swift.String {
   case SHA256
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
@@ -751,7 +917,9 @@ public enum JWKThumbprintAlgorithm : Swift.String {
 public enum CompressionAlgorithm : Swift.String {
   case DEFLATE
   case NONE
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
