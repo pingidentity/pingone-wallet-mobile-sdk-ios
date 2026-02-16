@@ -18,7 +18,7 @@
 		</data>
 		<key>Modules/PingOneWallet.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		DIq/6o4F2jKagklznEzTNiNzMR8=
+		3blI0ZoupJ0GkMlMZoufuniLbVg=
 		</data>
 		<key>Modules/PingOneWallet.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -34,11 +34,11 @@
 		</data>
 		<key>Modules/PingOneWallet.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		xVLCYZkUhiG0qInzIKdv4reIIlg=
+		lCv2txHSLVJxYXVocReYP78eckI=
 		</data>
 		<key>Modules/PingOneWallet.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		DIq/6o4F2jKagklznEzTNiNzMR8=
+		3blI0ZoupJ0GkMlMZoufuniLbVg=
 		</data>
 		<key>Modules/PingOneWallet.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Modules/PingOneWallet.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		HZTB4X8dEEr77iRqTvra0AP7jxY=
+		i97PCkgFBxcrajVjZmlqX3nzwCY=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -81,7 +81,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ulKWLpG4HsbcJ3kULciX8z+D/awgq0TD5SnoYTt+qyo=
+			32vclCRnVuaK02mNBAg5rRoLdqy6MFm4dbmUE3qmLD4=
 			</data>
 		</dict>
 		<key>Modules/PingOneWallet.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
@@ -109,14 +109,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			hEv/l5q3+0MY01oJwwe1N1sVseIYvU0wdxZYs5H1Ang=
+			6IUwOw2kLHHBnyT44lDqGiWDUM+/uuAlVzUe+N5nUxE=
 			</data>
 		</dict>
 		<key>Modules/PingOneWallet.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ulKWLpG4HsbcJ3kULciX8z+D/awgq0TD5SnoYTt+qyo=
+			32vclCRnVuaK02mNBAg5rRoLdqy6MFm4dbmUE3qmLD4=
 			</data>
 		</dict>
 		<key>Modules/PingOneWallet.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
@@ -144,7 +144,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			hCWbpTPBxkMzX1g5Bza8kSgvikdbSz8HqqzyPKRaCpc=
+			i9k5mxh9XgXxFWZcJfzvNSpaR0nCS+PWucytXTq+bFE=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
