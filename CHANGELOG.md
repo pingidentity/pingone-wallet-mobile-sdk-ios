@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.0.5] - 2026-02-16
+
+### Added
+- Credential Display Change
+
 ## [2.0.4] - 2026-05-25
 
 ### Added

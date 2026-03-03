@@ -2191,6 +2191,16 @@
         ]
       },
       {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "PingOneWallet",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "TypeDecl",
         "name": "CredentialEventType",
         "printedName": "CredentialEventType",
@@ -8618,6 +8628,16 @@
         ]
       },
       {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "PingOneWallet",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "TypeDecl",
         "name": "PingOneRegion",
         "printedName": "PingOneRegion",
@@ -11723,6 +11743,13 @@
       },
       {
         "kind": "Import",
+        "name": "CommunicationManager",
+        "printedName": "CommunicationManager",
+        "declKind": "Import",
+        "moduleName": "PingOneWallet"
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -14695,8 +14722,15 @@
     },
     {
       "filePath": "\/Users\/kdevipriya\/dev\/TestNew\/pingone-wallet-ios\/PingOneWallet\/PingOneWallet\/client\/NetworkManager.swift",
+      "kind": "Dictionary",
+      "offset": 251,
+      "length": 3,
+      "value": "[]"
+    },
+    {
+      "filePath": "\/Users\/kdevipriya\/dev\/TestNew\/pingone-wallet-ios\/PingOneWallet\/PingOneWallet\/client\/NetworkManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 969,
+      "offset": 1093,
       "length": 5,
       "value": "false"
     },
@@ -14752,21 +14786,21 @@
     {
       "filePath": "\/Users\/kdevipriya\/dev\/TestNew\/pingone-wallet-ios\/PingOneWallet\/PingOneWallet\/client\/ApplicationInstanceManager.swift",
       "kind": "Dictionary",
-      "offset": 383,
+      "offset": 411,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/kdevipriya\/dev\/TestNew\/pingone-wallet-ios\/PingOneWallet\/PingOneWallet\/client\/ApplicationInstanceManager.swift",
       "kind": "Dictionary",
-      "offset": 457,
+      "offset": 485,
       "length": 3,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/kdevipriya\/dev\/TestNew\/pingone-wallet-ios\/PingOneWallet\/PingOneWallet\/client\/ApplicationInstanceManager.swift",
       "kind": "Dictionary",
-      "offset": 521,
+      "offset": 549,
       "length": 3,
       "value": "[]"
     },
