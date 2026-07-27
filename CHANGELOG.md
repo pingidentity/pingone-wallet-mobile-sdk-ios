@@ -4,7 +4,7 @@
 
 ### Added
 - Credential Display Change
-- Use `CredentialUtils.getCardImageFromClaim(claim)` to get the credential card image from a `Claim`.
+- Use `CredentialUtils.getCardImageFromClaim(claim) ?? claim.getData()[ClaimKeys.cardImage]` to get the credential card image from a `Claim`.
 
 ## [2.0.4] - 2026-05-25
 
