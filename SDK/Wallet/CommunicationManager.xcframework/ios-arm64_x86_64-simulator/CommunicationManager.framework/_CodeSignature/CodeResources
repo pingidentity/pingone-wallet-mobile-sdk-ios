@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/CommunicationManager-Swift.h</key>
 		<data>
-		Nu8utFwQDT6D2d4DAG1R5KWINaI=
+		KN7bR6Jhm+EwcPJg/tcvjW4VTLE=
 		</data>
 		<key>Headers/CommunicationManager.h</key>
 		<data>
@@ -14,51 +14,51 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		03e82q7ZKeGI9ys5WejQy3uEEgE=
+		HCvHcEPT81zLO30WCqUyKE7QDpo=
 		</data>
 		<key>Modules/CommunicationManager.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		9nJ0pQZW1WD0CmQUqS/2yaUvC80=
+		AGl6VlgXl2/FyPdImh61LYfPsdA=
 		</data>
 		<key>Modules/CommunicationManager.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		vJ9fCGvZMpGFNWXVfuOnTIKbkOg=
+		prDA4S3v1mNfUjZMlyANC84Xtys=
 		</data>
 		<key>Modules/CommunicationManager.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		X8hm1gQ0QJbDzSqo8k7NuKebK3s=
+		cMvCMksd46HVNikkCapMfemTZHs=
 		</data>
 		<key>Modules/CommunicationManager.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		vJ9fCGvZMpGFNWXVfuOnTIKbkOg=
+		prDA4S3v1mNfUjZMlyANC84Xtys=
 		</data>
 		<key>Modules/CommunicationManager.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		0pZ/8/68Qd5Ghp+3jnOqbQ2+Ekg=
+		LONetuePcKH0M9CpVCEM3ksnNBs=
 		</data>
 		<key>Modules/CommunicationManager.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		9nJ0pQZW1WD0CmQUqS/2yaUvC80=
+		AGl6VlgXl2/FyPdImh61LYfPsdA=
 		</data>
 		<key>Modules/CommunicationManager.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		dwxLpYiVEYbKfzL5oCMmmuIGlx4=
+		bNncZeui/LJP0f6gMQ2F3k+FJcE=
 		</data>
 		<key>Modules/CommunicationManager.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		or9EdlryyoPDeDN33t86B89wLfY=
+		NZmsCKtG6ow1Uzu4IErBpQmdrCA=
 		</data>
 		<key>Modules/CommunicationManager.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		dwxLpYiVEYbKfzL5oCMmmuIGlx4=
+		bNncZeui/LJP0f6gMQ2F3k+FJcE=
 		</data>
 		<key>Modules/CommunicationManager.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		nheSlSaBFSwfD4R7JWM2JOpbHPs=
+		EqbEVeqm159uS8YvxwKdrtD71qo=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		cXXmHnibTIc6GE47ZXtG7uV0uXE=
+		MXFSLcSOGomWA7asf3MhRl5otRw=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -67,7 +67,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Gr4FVfrwZG289VwTR8EfMfhHvBFPpCNu3JhBLUqSTSQ=
+			AZFTaKQk3QaElBJFbUrCVsy8y3YSeUWqjUPKUE3cxZs=
 			</data>
 		</dict>
 		<key>Headers/CommunicationManager.h</key>
@@ -81,77 +81,77 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FfchAQRlDQk59aKRPLf30hnvKXkWRywtgucrvHRImq8=
+			RZ2SXUDsLcneH71aCXph2eFfXGoTficUow1HG1vHxbI=
 			</data>
 		</dict>
 		<key>Modules/CommunicationManager.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			flPZEWEBXlESCYfaM+DhlQ1XQpR+Jz/am3x5lRrY5SU=
+			krqOaPj5Z4JTJ7Mgq1gSDd7d5TwSWku0F1wfZn/MVrY=
 			</data>
 		</dict>
 		<key>Modules/CommunicationManager.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			hpKvmsTqMf6SnMT+UkK2QcmtQWhbNpbCsrrEVY2XghY=
+			Ppi8A1JRJKRIyEB0XMmQU23xjePH16XdPISmeLlocx4=
 			</data>
 		</dict>
 		<key>Modules/CommunicationManager.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			flPZEWEBXlESCYfaM+DhlQ1XQpR+Jz/am3x5lRrY5SU=
+			krqOaPj5Z4JTJ7Mgq1gSDd7d5TwSWku0F1wfZn/MVrY=
 			</data>
 		</dict>
 		<key>Modules/CommunicationManager.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FTovyFPqs6RTq4dGxC4S6hkxA2Fg5cKDy5xuDtgPwAk=
+			5ysTfHsHblb4v46szv1ewasYcwpv+XNBvb+LAVlnnkw=
 			</data>
 		</dict>
 		<key>Modules/CommunicationManager.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FfchAQRlDQk59aKRPLf30hnvKXkWRywtgucrvHRImq8=
+			RZ2SXUDsLcneH71aCXph2eFfXGoTficUow1HG1vHxbI=
 			</data>
 		</dict>
 		<key>Modules/CommunicationManager.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			tU5k/iGdGHzGQOEurQgVzSAmmF5bRUWOBxW9iZgqbnM=
+			9wmLVEvExIQxBFshQvGyvmm2LFmA9YwG7y/jG61SYC4=
 			</data>
 		</dict>
 		<key>Modules/CommunicationManager.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			x2SgV1ZGQTSNyS7S657+G7ueVhrbg59t3W5mlMDMPSk=
+			yfKr1oNfMNP1xCL57jM/s8/R16dXFSwe5PBGH+2SO14=
 			</data>
 		</dict>
 		<key>Modules/CommunicationManager.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			tU5k/iGdGHzGQOEurQgVzSAmmF5bRUWOBxW9iZgqbnM=
+			9wmLVEvExIQxBFshQvGyvmm2LFmA9YwG7y/jG61SYC4=
 			</data>
 		</dict>
 		<key>Modules/CommunicationManager.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			f4F5VwlshAPxq6dK/aBDlWr/fFYiaCMYPzRqQCNbrAE=
+			PSNTfl1goXWhP6goi6DtcDyq1kzkqfLzyUV9e7eGYd4=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5AvBr/A6tKNkCIRqol3OEuc7V88326hoaqFjRZnSabA=
+			LHpx5hkotyRUNZPhFRIeFu5cqofEeRuenWr0Rg3YuUM=
 			</data>
 		</dict>
 	</dict>
