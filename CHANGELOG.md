@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.0.6] - 2026-08-21
+
+### Added
+- Self-Claim Issuance in Wallet
+- Support for JWK Did Formats
+
+### Fixed
+- Minor Changes to improve UI/UX 
+
 ## [2.0.5] - 2026-02-16
 
 ### Added
