@@ -7,5 +7,4 @@ framework module CommunicationManager {
 
 module CommunicationManager.Swift {
   header "CommunicationManager-Swift.h"
-  requires objc
 }

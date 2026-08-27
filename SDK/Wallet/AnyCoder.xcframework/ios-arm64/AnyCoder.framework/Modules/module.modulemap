@@ -1,4 +1,3 @@
 framework module AnyCoder {
   header "AnyCoder-Swift.h"
-  requires objc
 }

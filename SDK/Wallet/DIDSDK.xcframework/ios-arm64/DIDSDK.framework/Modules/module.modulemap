@@ -7,5 +7,4 @@ framework module DIDSDK {
 
 module DIDSDK.Swift {
   header "DIDSDK-Swift.h"
-  requires objc
 }

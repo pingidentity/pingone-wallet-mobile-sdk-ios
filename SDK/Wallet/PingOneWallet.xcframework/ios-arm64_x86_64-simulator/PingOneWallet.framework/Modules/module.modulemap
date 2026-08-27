@@ -7,5 +7,4 @@ framework module PingOneWallet {
 
 module PingOneWallet.Swift {
   header "PingOneWallet-Swift.h"
-  requires objc
 }
